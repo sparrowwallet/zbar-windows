@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zbar", "zbar.vcxproj", "{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		MinSizeRel|Win32 = MinSizeRel|Win32
+		Release|Win32 = Release|Win32
+		RelWithDebInfo|Win32 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.Debug|Win32.Build.0 = Debug|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.MinSizeRel|Win32.ActiveCfg = MinSizeRel|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.MinSizeRel|Win32.Build.0 = MinSizeRel|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.Release|Win32.ActiveCfg = Release|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.Release|Win32.Build.0 = Release|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.RelWithDebInfo|Win32.ActiveCfg = RelWithDebInfo|Win32
+		{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}.RelWithDebInfo|Win32.Build.0 = RelWithDebInfo|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8D6F4E6E-8DD9-3F7B-A6D2-1CF60CFCBF4B}
+	EndGlobalSection
+EndGlobal

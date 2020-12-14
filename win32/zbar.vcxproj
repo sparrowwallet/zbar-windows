@@ -1,0 +1,251 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E8072FB6-41C5-3D5C-A66F-329FB8A4D760}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>zbar</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\Administrator\Desktop\zbar\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">zbar.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">zbar</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\Administrator\Desktop\zbar\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">zbar.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">zbar</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\Administrator\Desktop\zbar\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">zbar.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">zbar</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;ENABLE_QRCODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\zbar\decoder\qr_finder.c" />
+    <ClCompile Include="..\zbar\qrcode\qrdec.c" />
+    <ClCompile Include="..\zbar\qrcode\qrdectxt.c" />
+    <ClCompile Include="..\zbar\qrcode\rs.c" />
+    <ClCompile Include="..\zbar\qrcode\isaac.c" />
+    <ClCompile Include="..\zbar\qrcode\bch15_5.c" />
+    <ClCompile Include="..\zbar\qrcode\binarize.c" />
+    <ClCompile Include="..\zbar\qrcode\util.c" />
+    <ClCompile Include="..\zbar\processor\posix.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\zbar\symbol.c" />
+    <ClCompile Include="..\zbar\image.c" />
+    <ClCompile Include="..\zbar\video.c" />
+    <ClCompile Include="..\zbar\img_scanner.c" />
+    <ClCompile Include="..\zbar\scanner.c" />
+    <ClCompile Include="..\zbar\window.c" />
+    <ClCompile Include="..\zbar\decoder.c" />
+    <ClCompile Include="..\zbar\refcnt.c" />
+    <ClCompile Include="..\zbar\processor\lock.c" />
+    <ClCompile Include="..\zbar\processor.c" />
+    <ClCompile Include="..\zbar\convert.c" />
+    <ClCompile Include="..\zbar\error.c" />
+    <ClCompile Include="..\zbar\video\null.c">
+      <ObjectFileName>$(IntDir)/zbar/video/null.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\null.c">
+      <ObjectFileName>$(IntDir)/zbar/processor/null.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\null.c">
+      <ObjectFileName>$(IntDir)/zbar/window/null.c.obj</ObjectFileName>
+    </ClCompile>
+    <ClInclude Include="..\include\zbar.h" />
+    <ClInclude Include="..\zbar\decoder\qr_finder.h" />
+    <ClInclude Include="..\zbar\qrcode.h" />
+    <ClInclude Include="..\zbar\qrcode\qrdec.h" />
+    <ClInclude Include="..\zbar\qrcode\rs.h" />
+    <ClInclude Include="..\zbar\qrcode\isaac.h" />
+    <ClInclude Include="..\zbar\qrcode\bch15_5.h" />
+    <ClInclude Include="..\zbar\qrcode\binarize.h" />
+    <ClInclude Include="..\zbar\qrcode\util.h" />
+    <ClInclude Include="..\zbar\error.h" />
+    <ClInclude Include="..\zbar\symbol.h" />
+    <ClInclude Include="..\zbar\image.h" />
+    <ClInclude Include="..\zbar\processor.h" />
+    <ClInclude Include="..\zbar\refcnt.h" />
+    <ClInclude Include="..\zbar\timer.h" />
+    <ClInclude Include="..\zbar\mutex.h" />
+    <ClInclude Include="..\zbar\event.h" />
+    <ClInclude Include="..\zbar\thread.h" />
+    <ClInclude Include="..\zbar\window.h" />
+    <ClInclude Include="..\zbar\video.h" />
+    <ClInclude Include="..\zbar\img_scanner.h" />
+    <ClInclude Include="..\zbar\decoder.h" />
+    <ClInclude Include="..\zbar\processor\posix.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
