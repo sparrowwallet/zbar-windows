@@ -73,6 +73,42 @@
     <ClCompile Include="..\zbar\window\null.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\zbar\decoder\i25.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\codabar.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\databar.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\code128.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\code93.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\code39.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\ean.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\win.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\config.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\pdf417.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\sq_finder.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\sqcode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\zbar.h">
@@ -144,9 +180,39 @@
     <ClInclude Include="..\zbar\processor\posix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="..\CMakeLists.txt" />
+    <ClInclude Include="..\zbar\decoder\i25.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\codabar.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\databar.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\code128.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\code93.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\code39.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\ean.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\pdf417.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\decoder\sq_finder.h">
+      <Filter>Source Files\decoder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\sqcode.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -155,5 +221,13 @@
     <Filter Include="Source Files">
       <UniqueIdentifier>{138F32C6-425A-3C3C-BAB0-E030755D908D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\decoder">
+      <UniqueIdentifier>{36d2b411-b5eb-4a27-8259-21e17c606f54}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="zbar.def">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,0 +1,4 @@
+[submodule "libiconv"]
+	path = libiconv
+	url = https://github.com/ShadowsocksR-Live/libiconv.git
+	branch = master
