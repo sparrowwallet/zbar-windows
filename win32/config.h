@@ -22,10 +22,12 @@
 #define ENABLE_I25 1
 
 /* whether to build support for PDF417 symbology */
-#undef ENABLE_PDF417
+#define ENABLE_PDF417 1
 
 /* whether to build support for QR Code */
 #define ENABLE_QRCODE 1
+
+#define ENABLE_SQCODE 1
 
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
@@ -43,7 +45,7 @@
 #undef HAVE_GETPAGESIZE
 
 /* Define if you have the iconv() function and it works. */
-#undef HAVE_ICONV
+#define  HAVE_ICONV 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 //#define HAVE_INTTYPES_H 1
@@ -220,7 +222,6 @@
 /* Define to `__inline__' or `__inline' if that's what the C compiler
    calls it, or to nothing if 'inline' is not supported under any name.  */
 #ifndef __cplusplus
-#undef inline
 #define inline __inline
 #endif
 
