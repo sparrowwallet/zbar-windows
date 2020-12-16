@@ -29,6 +29,8 @@
 
 #define ENABLE_SQCODE 1
 
+#define DIRECTSHOW 1
+
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
@@ -197,6 +199,7 @@
 
 #define PRIX32    "lX"
 #define PRIx32    "lx"
+#define PRId64    "lld"
 
 #define snprintf _snprintf
 
@@ -224,6 +227,11 @@
 #ifndef __cplusplus
 #define inline __inline
 #endif
+
+#define COBJMACROS 1
+#define CINTERFACE 1
+
+//#define APP_ICON 30980
 
 /* Define to the type of a signed integer type of width exactly 32 bits if
    such a type exists and the standard includes do not define it. */

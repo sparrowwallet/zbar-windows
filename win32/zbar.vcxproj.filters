@@ -1,33 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="..\zbar\decoder\qr_finder.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\qrdec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\qrdectxt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\rs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\isaac.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\bch15_5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\binarize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\qrcode\util.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\processor\posix.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\zbar\symbol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,13 +19,7 @@
     <ClCompile Include="..\zbar\window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\zbar\decoder.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\zbar\refcnt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\processor\lock.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\zbar\processor.c">
@@ -62,15 +29,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\zbar\error.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\video\null.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\processor\null.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\zbar\window\null.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\zbar\decoder\i25.c">
@@ -94,9 +52,6 @@
     <ClCompile Include="..\zbar\decoder\ean.c">
       <Filter>Source Files\decoder</Filter>
     </ClCompile>
-    <ClCompile Include="..\zbar\processor\win.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\zbar\config.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +64,93 @@
     <ClCompile Include="..\zbar\sqcode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\zbar\misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder\qr_finder.c">
+      <Filter>Source Files\decoder</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\lock.c">
+      <Filter>Source Files\processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\null.c">
+      <Filter>Source Files\processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\posix.c">
+      <Filter>Source Files\processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\win.c">
+      <Filter>Source Files\processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\processor\x.c">
+      <Filter>Source Files\processor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\bch15_5.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\binarize.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\isaac.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\qrdec.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\qrdectxt.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\rs.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\qrcode\util.c">
+      <Filter>Source Files\qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\null.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\v4l.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\v4l1.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\v4l2.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\vfw.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\dib.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\null.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\vfw.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\win.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\ximage.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\xv.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\window\x.c">
+      <Filter>Source Files\window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\video\dshow.c">
+      <Filter>Source Files\video</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\zbar\jpeg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\zbar.h">
@@ -118,24 +160,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\zbar\qrcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\qrdec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\rs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\isaac.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\bch15_5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\binarize.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\zbar\qrcode\util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\zbar\error.h">
@@ -177,9 +201,6 @@
     <ClInclude Include="..\zbar\decoder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\zbar\processor\posix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\zbar\decoder\i25.h">
       <Filter>Source Files\decoder</Filter>
     </ClInclude>
@@ -213,6 +234,36 @@
     <ClInclude Include="..\zbar\sqcode.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\zbar\misc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\processor\posix.h">
+      <Filter>Source Files\processor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\bch15_5.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\binarize.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\isaac.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\qrdec.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\rs.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\qrcode\util.h">
+      <Filter>Source Files\qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\window\win.h">
+      <Filter>Source Files\window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\zbar\window\x.h">
+      <Filter>Source Files\window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -224,10 +275,27 @@
     <Filter Include="Source Files\decoder">
       <UniqueIdentifier>{36d2b411-b5eb-4a27-8259-21e17c606f54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\processor">
+      <UniqueIdentifier>{c3779696-b909-43db-a2a6-1941df3d1d31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\video">
+      <UniqueIdentifier>{83ab4b4c-c86f-40e3-8453-a1456b932e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\qrcode">
+      <UniqueIdentifier>{fed11b28-022d-4bb0-8ece-4063308c04c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\window">
+      <UniqueIdentifier>{b8528bea-04da-4d4d-8951-01400fac66ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="zbar.def">
       <Filter>Source Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\zbar\libzbar.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

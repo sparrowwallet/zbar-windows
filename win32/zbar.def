@@ -75,6 +75,8 @@ zbar_processor_set_active
 zbar_processor_set_config
 zbar_processor_set_data_handler
 zbar_processor_set_userdata
+zbar_processor_set_control
+zbar_processor_get_control
 zbar_processor_set_visible
 zbar_processor_user_wait
 zbar_scan_image
