@@ -14,7 +14,7 @@ zbar
 +--- ...
 +---java
 +---libiconv
-+---libpng      <-- libpng files place here
++---libpng      <-- libpng files place this folder
 +---perl
 +--- ...
 +---win32
