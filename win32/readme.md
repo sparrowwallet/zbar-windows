@@ -6,7 +6,7 @@ root folder of zbar project.
 
 and use VS 2010+ open zbar_qrcode.sln to build it.
 
-put [libpng](https://github.com/ShadowsocksR-Live/libpng.git) project files and it submodule (zlib) in root of zbar, like this:
+like this:
 
 ```
 zbar
