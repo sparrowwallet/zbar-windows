@@ -6,3 +6,17 @@ root folder of zbar project.
 
 and use VS 2010+ open zbar_qrcode.sln to build it.
 
+like this
+```
+zbar
+| 
++--- ...
++---java
++---libiconv
++---libpng      <-- libpng files place here
++--- ...
++---win32
+|       readme.md    <-- this readme file
++---zbar
++--- ...
+```
