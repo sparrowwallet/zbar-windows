@@ -60,10 +60,10 @@ static void get_data (const char *name,
     /* allocate image */
     *width = png_get_image_width(png, info);
     *height = png_get_image_height(png, info);
-    *raw = malloc(*width * *height);
+    *raw = (png_bytep)calloc(*width * *height, sizeof(png_byte));
     rows = (png_bytep*)calloc(*height, sizeof(*rows));
     for(i = 0; i < *height; i++)
-        rows[i] = ((uint8_t*)(*raw)) + (*width * i);
+        rows[i] = ((png_bytep)(*raw)) + (*width * i);
     png_read_image(png, rows);
     free(rows);
 }
