@@ -15,6 +15,7 @@ zbar
 +---java
 +---libiconv
 +---libpng      <-- libpng files place here
++---perl
 +--- ...
 +---win32
 |       readme.md    <-- this readme file
