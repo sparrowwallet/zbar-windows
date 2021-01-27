@@ -36,6 +36,10 @@ BUILDING
 Linux
 ```
 apt install autopoint pkg-config -y
+
+autoreconf -vfi
+./configure --without-imagemagick --without-python
+make
 ```
 
 See `INSTALL.md` for generic configuration and build instructions.
