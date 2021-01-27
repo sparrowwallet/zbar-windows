@@ -22,6 +22,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libpng", "..\libpng\win32\l
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zlib", "..\libpng\zlib\win32\zlib.vcxproj", "{40414BC0-EFAC-4E3F-9E6D-B19BDBA64561}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "zbarimg", "zbarimg\zbarimg.vcxproj", "{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -78,6 +80,14 @@ Global
 		{40414BC0-EFAC-4E3F-9E6D-B19BDBA64561}.Release|Win32.Build.0 = Release|Win32
 		{40414BC0-EFAC-4E3F-9E6D-B19BDBA64561}.Release|x64.ActiveCfg = Release|x64
 		{40414BC0-EFAC-4E3F-9E6D-B19BDBA64561}.Release|x64.Build.0 = Release|x64
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Debug|Win32.Build.0 = Debug|Win32
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Debug|x64.ActiveCfg = Debug|x64
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Debug|x64.Build.0 = Debug|x64
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Release|Win32.ActiveCfg = Release|Win32
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Release|Win32.Build.0 = Release|Win32
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Release|x64.ActiveCfg = Release|x64
+		{5D99A2DB-C44E-43D6-9AD5-E8F2A664F910}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

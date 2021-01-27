@@ -139,6 +139,8 @@ unsigned xmlbuflen = 0;
 
 static zbar_processor_t *processor = NULL;
 
+#ifdef HAVE_IMAGEMAGICK
+
 static inline int dump_error(MagickWand *wand)
 {
     char *desc;
@@ -271,6 +273,14 @@ static int scan_image (const char *filename)
     return(0);
 }
 
+#else
+
+static int scan_image (const char *filename) {
+    return -1;
+}
+
+#endif
+
 int usage (int rc,
            const char *msg,
            const char *arg)
@@ -396,7 +406,9 @@ int main (int argc, const char *argv[])
         return(usage(1, "ERROR: specify image file(s) to scan", NULL));
     num_images = 0;
 
+#ifdef HAVE_IMAGEMAGICK
     InitializeMagick("zbarimg");
+#endif
 
     processor = zbar_processor_create(0);
     assert(processor);
@@ -534,6 +546,8 @@ int main (int argc, const char *argv[])
         exit_code = 4;
 
     zbar_processor_destroy(processor);
+#ifdef HAVE_IMAGEMAGICK
     DestroyMagick();
+#endif
     return(exit_code);
 }
