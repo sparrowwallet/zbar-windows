@@ -33,12 +33,12 @@ updated for ages:
 BUILDING
 ========
 
-Linux
+Ubuntu
 ```
 apt install autopoint pkg-config -y
 
 autoreconf -vfi
-./configure --without-imagemagick --without-python
+./configure --without-imagemagick --without-python --without-gtk
 make
 ```
 
