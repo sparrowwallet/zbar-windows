@@ -33,6 +33,11 @@ updated for ages:
 BUILDING
 ========
 
+Linux
+```
+apt install autopoint pkg-config -y
+```
+
 See `INSTALL.md` for generic configuration and build instructions.
 
 If you have installed all needed dependencies, all you need to do is to run:
