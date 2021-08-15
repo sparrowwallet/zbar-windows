@@ -21,12 +21,13 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
-#include "error.h"
-#include "image.h"
-#include "refcnt.h"
 #include <config.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "error.h"
+#include "image.h"
+#include "refcnt.h"
 
 zbar_image_t *zbar_image_create ()
 {

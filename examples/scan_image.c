@@ -35,8 +35,7 @@ static void get_data (const char *name,
 
     FILE *file = fopen(name, "rb");
     if(!file) exit(2);
-    png =
-        png_create_read_struct(PNG_LIBPNG_VER_STRING,
+    png = png_create_read_struct(PNG_LIBPNG_VER_STRING,
                                NULL, NULL, NULL);
     if(!png) exit(3);
     if(setjmp(png_jmpbuf(png))) exit(4);

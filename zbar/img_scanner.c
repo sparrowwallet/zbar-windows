@@ -891,7 +891,7 @@ static void *_zbar_scan_image(zbar_image_scanner_t *iscn,
     unsigned w, h, cx1, cy1;
     int density;
     char filter;
-    int nean = 0, naddon = 0;
+    int nean, naddon;
 
     /* timestamp image
      * FIXME prefer video timestamp
@@ -1062,7 +1062,8 @@ static void *_zbar_scan_image(zbar_image_scanner_t *iscn,
     /* FIXME tmp hack to merge simple case EAN add-ons */
     filter = (!iscn->enable_cache &&
                    (density == 1 || CFG(iscn, ZBAR_CFG_Y_DENSITY) == 1));
-    nean = 0, naddon = 0;
+    nean = 0;
+    naddon = 0;
     if(syms->nsyms) {
         zbar_symbol_t **symp;
         for(symp = &syms->head; *symp; ) {

@@ -22,6 +22,19 @@ Tarballs with ZBar can be obtained from:
 
 - <https://linuxtv.org/downloads/zbar/>
 
+Since ZBar version 0.23.90, binaries auto-generated from Github's
+Actions workflows are auto-generated for each release:
+
+- <https://linuxtv.org/downloads/zbar/binaries/>
+
+They contain binaries for:
+
+- Ubuntu SID, generated via pbuilder;
+- Mac OS;
+- Windows, for 4 different configurations:
+  - 32 bits/64 bits;
+  - Video for Windows (VfW) or DirectShow (DShow).
+
 License information can be found in `COPYING`.
 
 You may find some outdated documentation at the original ZBar's
@@ -33,16 +46,13 @@ updated for ages:
 BUILDING
 ========
 
-Ubuntu
-```
-apt install autopoint pkg-config -y
-
-autoreconf -vfi
-./configure --without-imagemagick --without-python --without-gtk
-make
-```
-
 See `INSTALL.md` for generic configuration and build instructions.
+
+Please notice that at least autotools related packages and a
+C compiler are needed, in order to generate the configure script.
+
+So, on Debian, at least those packages are needed:
+	autoconf autopoint pkg-config libtool gcc make
 
 If you have installed all needed dependencies, all you need to do is to run:
 

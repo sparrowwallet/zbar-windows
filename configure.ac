@@ -1,6 +1,7 @@
+changecom()dnl
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
-AC_INIT([zbar], [0.23.1], [mchehab+samsung@kernel.org])
+AC_INIT([zbar], [0.23.92], [mchehab+huawei@kernel.org])
 m4_ifndef([AC_LANG_DEFINES_PROVIDED],
           [m4_define([AC_LANG_DEFINES_PROVIDED])])
 AC_CONFIG_AUX_DIR(config)
@@ -87,11 +88,6 @@ AC_PROG_CXX
 AC_PROG_CC_STDC
 
 PKG_PROG_PKG_CONFIG
-
-AC_ARG_VAR([XMLTO], [location of xmlto, used for optional \
-documentation generation])
-AC_ARG_VAR([XMLTOFLAGS], [additional arguments for xmlto])
-AC_CHECK_PROGS([XMLTO], [xmlto], [:])
 
 dnl symbologies
 
@@ -187,6 +183,13 @@ AC_ARG_ENABLE([doc],
     [disable building docs])],
   [],
   [enable_doc="yes"])
+
+AS_IF([test "x$enable_doc" != "xno"],
+  [AC_ARG_VAR([XMLTO], [location of xmlto, used for optional documentation generation])
+   AC_ARG_VAR([XMLTOFLAGS], [additional arguments for xmlto])
+   AC_CHECK_PROGS([XMLTO], [xmlto])])
+
+AS_IF([test "x$XMLTO" = "x"], enable_doc="no")
 
 AM_CONDITIONAL([HAVE_DOC], [test "x$enable_doc" != "xno"])
 
@@ -345,8 +348,7 @@ AC_ARG_WITH([jpeg],
 
 have_jpeg="maybe"
 AS_IF([test "x$with_jpeg" != "xno"],
-  [AC_CHECK_HEADERS([jpeglib.h], [], [have_jpeg="no"])
-   AC_CHECK_HEADER([jerror.h], [], [have_jpeg="no"])
+  [AC_CHECK_HEADERS([jpeglib.h jerror.h], [], [have_jpeg="no"])
    AC_CHECK_LIB([jpeg], [jpeg_read_header], [], [have_jpeg="no"])
    AS_IF([test "x$have_jpeg" != "xno"],
      [with_jpeg="yes"],
@@ -393,15 +395,19 @@ dnl but the latter doesn't exist in older versions (bug #2848437)
 dnl double check ImageMagick install (bug #2582232)
       CPPFLAGS_save="$CPPFLAGS"
       CPPFLAGS="$CPPFLAGS $MAGICK_CFLAGS"
-      AC_CHECK_HEADER([wand/MagickWand.h],
-        [have_IM="yes"],
+      AC_CHECK_HEADERS([wand/MagickWand.h],
+        [
+          have_IM="yes"
+          with_imagemagick="yes"
+        ],
         [have_IM="broken"])
 dnl check for ImageMagick 7, see https://imagemagick.org/script/porting.php#headers
       AS_IF([test "x$have_IM" = "xbroken"], [
-        AC_CHECK_HEADER([MagickWand/MagickWand.h],
+        AC_CHECK_HEADERS([MagickWand/MagickWand.h],
           [
             have_IM="yes"
             have_IM7="yes"
+            with_imagemagick="yes"
           ],
           [have_IM="broken"])
       ])
@@ -417,6 +423,7 @@ AS_IF([test "x$have_IM" = "xyes"], [],
      [looked_for="$looked_for or GraphicsMagick"])
    PKG_CHECK_MODULES([GM], [GraphicsMagickWand],
      [have_GM="yes"
+      with_imagemagick="no"
       magick="GraphicsMagick"
       MAGICK_CFLAGS="$MAGICK_CFLAGS $GM_CFLAGS"
       MAGICK_LIBS="$MAGICK_LIBS $GM_LIBS"
@@ -428,8 +435,10 @@ AS_IF([test "x$have_IM" = "xyes"], [],
 dnl now that we have collected all the info abt what Magick is available
 dnl let the user know what we will or can't do
 AS_IF([test "x$have_IM" = "xbroken" && test "x$have_GM" = "xyes"],
-  [AC_MSG_WARN([Your ImageMagick install is broken, using GraphicsMagick instead])])
-
+  [
+    with_imagemagick="no"
+    AC_MSG_WARN([Your ImageMagick install is broken, using GraphicsMagick instead])
+  ])
 AS_IF([test "x$have_IM" = "xyes" || test "x$have_GM" = "xyes"],
   [AC_MSG_NOTICE([using $magick version $MAGICK_VERSION])],
   [test "x$with_imagemagick" = "xno" && \
@@ -439,6 +448,9 @@ AS_IF([test "x$have_IM" = "xyes" || test "x$have_GM" = "xyes"],
   [AC_MSG_FAILURE([$magick package found but wand/MagickWand.h not installed?!
 this is a problem with your $magick install, please try again after
 resolving the inconsistency or installing GraphicsMagick alternative...])],
+  [test "x$with_graphicsmagick" = "xcheck"],
+  [AC_MSG_NOTICE([ImageMagick/GraphicsMagick not detected. Several features will be disabled])
+   with_imagemagick="no"],
   [AC_MSG_FAILURE([dnl
 Unable to find $looked_for:
 
@@ -518,8 +530,8 @@ AS_IF([test "x$with_gtk" = "xgtk2" || test "x$with_gtk" = "xauto"],
     ],[libgtk2=false])
   ])
 
-# GTK not found
-AS_IF(test "x$with_gtk" = "xauto"],[with_gtk="no"])
+dnl GTK not found
+AS_IF([test "x$with_gtk" = "xauto"], [with_gtk="no"])
 
 AC_SUBST(GTK_LIBS)
 AC_SUBST(GTK_CFLAGS)
@@ -548,7 +560,7 @@ Please notice that PYTHON var, if especified, takes precedence.])],
 
 AC_ARG_VAR([PYTHON_CONFIG], [full path to python-config program])
 AC_ARG_VAR([PYTHON_CFLAGS], [compiler flags for building python extensions])
-AC_ARG_VAR([PYTHON_LIBS], [linker flags for building python extensions])
+AC_ARG_VAR([PYTHON_LDFLAGS], [linker flags for building python extensions])
 
 AC_ARG_VAR([PYGTK_H2DEF], [full path to PyGTK h2def.py module (python2 only)])
 AC_ARG_VAR([PYGTK_CODEGEN], [full path to pygtk-codegen program (python2 only)])
@@ -581,15 +593,25 @@ AS_IF([test "x$PYTHON_VERSION" != "x" && test "x$with_python" != "xno"],
      [test -x "$PYTHON-config"],
      [PYTHON_CFLAGS=`$PYTHON-config --cflags`],
      [PYTHON_CFLAGS=`$PYTHON -c 'import distutils.sysconfig as s, sys; sys.stdout.write(" ".join(s.get_config_vars("CFLAGS")) + " -I"+s.get_python_inc() + " -I"+s.get_python_inc(plat_specific=True))'`])
+   AS_IF([test "x$PYTHON_LDFLAGS" != "x"],
+     [],
+     [test "x$PYTHON_CONFIG" != "x" && test -x "$PYTHON_CONFIG"],
+     [PYTHON_LDFLAGS=`$PYTHON_CONFIG --ldflags`],
+     [test -x "$PYTHON-config"],
+     [PYTHON_LDFLAGS=`$PYTHON-config --ldflags`],
+     [PYTHON_LDFLAGS=`$PYTHON -c 'import distutils.sysconfig as s, sys; sys.stdout.write(" ".join(s.get_config_vars("LDFLAGS")) + " -I"+s.get_python_inc() + " -I"+s.get_python_inc(plat_specific=True))'`])
 
    dnl check that #include <Python.h> compiles (bug #3092663)
    CPPFLAGS_save="$CPPFLAGS"
    CPPFLAGS="$CPPFLAGS $PYTHON_CFLAGS"
-   AC_CHECK_HEADER([Python.h], [], [AC_MSG_ERROR([dnl
+   AS_IF([test "x$win32" = "xyes"], PYTHON_LDFLAGS="$PYTHON_LDFLAGS -no-undefined")
+   AC_CHECK_HEADERS([Python.h], [],
+     [AS_IF([test "x$with_python" = "xauto"],with_python="no",
+       [AC_MSG_ERROR([dnl
 Python module enabled, but unable to compile Python.h.
 Install the development package for python-$am_cv_python_version, or configure
 --without-python to disable the python bindings.dnl
-])])
+])])])
    CPPFLAGS="$CPPFLAGS_save"
 
    dnl PyGTK
@@ -650,7 +672,7 @@ AS_IF([test "x$have_x" = "xyes"],
 AS_IF([test "x$with_qt" != "xno"],
       [PKG_CHECK_MODULES([QT],
 		         [Qt5Core >= 5 Qt5Gui >= 5 Qt5Widgets >= 5.0 $qt_extra],,
-		         [with_qt5 = "no"
+		         [with_qt5="no"
 		          PKG_CHECK_MODULES([QT],
 					    [QtCore >= 4 QtGui >= 4],,
 					    [with_qt="no"])])])
@@ -688,13 +710,13 @@ AC_ARG_VAR([JAVA_HOME], [root location of JDK])
 AC_ARG_VAR([JAVAC], [location of Java language compiler])
 AC_ARG_VAR([JAVAH], [location of Java header generator])
 
-# If $JAVA_HOME not defined, try to autodetect it
+dnl If $JAVA_HOME not defined, try to autodetect it
 AS_IF([test -z "$JAVA_HOME"],
       [AC_PATH_PROGS([JAVAC], [javac jikes ecj gcj], [:], [$PATH])
        AS_IF([test ! -z "$JAVAC"],
 	     [JAVA_HOME=$( readlink -f ${JAVAC} | rev | cut -d/ -f3- | rev )])])
 
-# If $JAVA_HOME is defined, set JAVA_PATH and JAVAC
+dnl If $JAVA_HOME is defined, set JAVA_PATH and JAVAC
 AS_IF([test ! -z "$JAVA_HOME"],
       [JAVA_PATH="$JAVA_HOME/bin$PATH_SEPARATOR$PATH"
        AS_IF([test -z "$JAVAC"],
@@ -708,8 +730,8 @@ AC_ARG_WITH([java],
 
 JAVAC=${JAVAC/ecj/ecj -1.5}
 
-# Javah was obsoleted on Java 8 and removed on Java 11. So, we need to
-# look strictly at the $JAVA_HOME in order to avoid mixing different versions
+dnl Javah was obsoleted on Java 8 and removed on Java 11. So, we need to
+dnl look strictly at the $JAVA_HOME in order to avoid mixing different versions
 AS_IF([test -z "$JAVAH"],
       [AC_PATH_PROGS([JAVAH], [javah], [], [$JAVA_HOME/bin])])
 
@@ -756,7 +778,7 @@ AS_IF([test -d "$JAVA_HOME/include/linux"],
 AS_IF([test "x$with_java" != "xno"],
   [CPPFLAGS_save="$CPPFLAGS"
    CPPFLAGS="$CPPFLAGS $JAVA_CFLAGS"
-   AC_CHECK_HEADER([jni.h], [], [have_java="no"])
+   AC_CHECK_HEADERS([jni.h], [], [have_java="no"])
    CPPFLAGS="$CPPFLAGS_save"
    AS_IF([test "x$have_java" != "xno"],
      [with_java="yes"],
@@ -905,8 +927,8 @@ AS_IF([test "x$with_java" != "xyes"],
   [echo "        => the Java interface will *NOT* be built"])
 AS_IF([test "x$with_java_unit" != "xyes"],
   [echo "        => the Java unit test will *NOT* be enabled"])
-#echo "NPAPI Plugin     --with-npapi=$with_npapi"
-#AS_IF([test "x$with_mozilla" != "xyes"],
-#  [echo "       => the Mozilla/Firefox/OpenOffice plugin will *NOT* be built"])
+dnl echo "NPAPI Plugin     --with-npapi=$with_npapi"
+dnl AS_IF([test "x$with_mozilla" != "xyes"],
+dnl  [echo "       => the Mozilla/Firefox/OpenOffice plugin will *NOT* be built"])
 AS_IF([test "x$enable_pdf417" = "xyes"],
   [echo "        => the pdf417 code support is incomplete!"])

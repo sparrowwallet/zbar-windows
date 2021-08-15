@@ -266,11 +266,9 @@ static inline char ean_part_end2 (ean_decoder_t *ean,
         return(ZBAR_NONE);
 
     /* extract parity bits */
-    par = ((pass->raw[1] & 0x10) >> 3 |
-                         (pass->raw[2] & 0x10) >> 4);
+    par = ((pass->raw[1] & 0x10) >> 3 | (pass->raw[2] & 0x10) >> 4);
     /* calculate "checksum" */
-    chk = ~((pass->raw[1] & 0xf) * 10 +
-                          (pass->raw[2] & 0xf)) & 0x3;
+    chk = ~((pass->raw[1] & 0xf) * 10 + (pass->raw[2] & 0xf)) & 0x3;
     dbprintf(2, " par=%x chk=%x", par, chk);
     if(par != chk)
         return(ZBAR_NONE);
