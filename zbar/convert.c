@@ -1112,13 +1112,13 @@ int zbar_negotiate_format (zbar_video_t *vdo,
     uint32_t min_fmt = 0;
     const uint32_t *fmt;
 
-    if(!vdo && !win)
+    if(!vdo)
         return(0);
 
     if (win)
         (void)window_lock(win);
 
-    errdst = (vdo) ? &vdo->err : &win->err;
+    errdst = &vdo->err;
     if(verify_format_sort()) {
         if (win)
             (void)window_unlock(win);
@@ -1126,14 +1126,14 @@ int zbar_negotiate_format (zbar_video_t *vdo,
                            "image format list is not sorted!?"));
     }
 
-    if((vdo && !vdo->formats) || (win && !win->formats)) {
+    if(!vdo->formats || (win && !win->formats)) {
         if (win)
             (void)window_unlock(win);
         return(err_capture(errdst, SEV_ERROR, ZBAR_ERR_UNSUPPORTED, __func__,
                            "no input or output formats available"));
     }
 
-    srcs = (vdo) ? vdo->formats : y800;
+    srcs = vdo->formats;
     dsts = (win) ? win->formats : y800;
 
     for(fmt = _zbar_formats; *fmt; fmt++) {
@@ -1163,7 +1163,7 @@ int zbar_negotiate_format (zbar_video_t *vdo,
         vdo->formats = vdo->emu_formats;
         vdo->emu_formats = NULL;
 
-        srcs = (vdo) ? vdo->formats : y800;
+        srcs = vdo->formats;
         dsts = (win) ? win->formats : y800;
 
         /*
@@ -1202,8 +1202,6 @@ int zbar_negotiate_format (zbar_video_t *vdo,
     if(!min_fmt)
         return(err_capture(errdst, SEV_ERROR, ZBAR_ERR_UNSUPPORTED, __func__,
                            "no supported image formats available"));
-    if (!vdo)
-        return(0);
 
     zprintf(2, "setting best format %.4s(%08" PRIx32 ") (%d)\n",
             (char*)&min_fmt, min_fmt, min_cost);
