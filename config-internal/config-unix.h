@@ -333,7 +333,7 @@
 #define HAVE__BOOL 1
 
 /* Define as const if the declaration of iconv() needs const. */
-#define ICONV_CONST 
+#define ICONV_CONST
 
 /* Library major version */
 #define LIB_VERSION_MAJOR 0
@@ -479,6 +479,5 @@
 /* #undef uintptr_t */
 
 #ifndef X_DISPLAY_MISSING
-# define HAVE_X
+#define HAVE_X
 #endif
-

@@ -38,11 +38,11 @@
 //#include <getopt.h>
 
 /* These are also defined in stdio.h. */
-#ifndef	SEEK_SET
+#ifndef SEEK_SET
 #define SEEK_SET 0
 #endif
 
-#ifndef	SEEK_CUR
+#ifndef SEEK_CUR
 #define SEEK_CUR 1
 #endif
 
@@ -58,7 +58,7 @@ extern "C" {
 #include <sys/types.h> /* For useconds_t. */
 
 //int __cdecl __MINGW_NOTHROW usleep(useconds_t useconds);
-#endif  /* Not __NO_ISOCEXT */
+#endif /* Not __NO_ISOCEXT */
 
 /* This is defined as a real library function to allow autoconf
    to verify its existence. */
@@ -71,11 +71,10 @@ int ftruncate(int, off_t);
 #endif
 
 #ifdef _WIN64
-    typedef __int64          ssize_t;
+typedef __int64 ssize_t;
 #else
-    typedef int              ssize_t;
+typedef int ssize_t;
 #endif
-
 
 #include <WinSock2.h>
 
