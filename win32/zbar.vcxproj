@@ -53,7 +53,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../config-internal;..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>
@@ -67,10 +67,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\zbar\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\zbar\;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../config-internal;..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>
@@ -103,10 +103,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -125,7 +125,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../config-internal;..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>
       </ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -139,10 +139,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\zbar\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\zbar\;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -161,7 +161,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;..\libiconv\win32;.;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ExceptionHandling>
       </ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -175,10 +175,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Administrator\Desktop\zbar\include;C:\Users\Administrator\Desktop\zbar\zbar;C:\Users\Administrator\Desktop\zbar\zbar\qrcode;C:\Users\Administrator\Desktop\zbar\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\zbar;..\zbar\qrcode;..\zbar\decoder;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>

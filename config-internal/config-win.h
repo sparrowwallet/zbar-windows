@@ -231,6 +231,10 @@
 #define COBJMACROS 1
 #define CINTERFACE 1
 
+#if _MSC_VER < 1900
+#define snprintf _snprintf
+#endif
+
 //#define APP_ICON 30980
 
 /* Define to the type of a signed integer type of width exactly 32 bits if
