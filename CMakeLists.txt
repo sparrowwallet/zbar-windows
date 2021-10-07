@@ -1,139 +1,131 @@
-project(zbar_qrcode)
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.0)
+project(zbar)
 
-set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+include(CMakeDependentOption)
+include(CheckFunctionExists)
+include(CheckIncludeFile)
 
-set(CMAKE_THREAD_PREFER_PTHREAD ON)
-find_package(Threads QUIET)
-find_package(Iconv QUIET)
+set(CMAKE_C_STANDARD 90)
 
-find_file(HAVE_INTTYPES_H "inttypes.h" DOC "inttypes.h exists")
-find_file(HAVE_FEATURES_H "features.h" DOC "features.h exists")
-find_file(HAVE_POLL_H "poll.h" DOC "poll.h exists")
-find_file(HAVE_SYS_TIME_H "sys/time.h" DOC "sys/time.h exists")
+set(ZBAR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "zbar root directory" FORCE)
 
-add_library(zbar SHARED
-    zbar/decoder/qr_finder.c
-    zbar/qrcode/qrdec.c
-    zbar/qrcode/qrdectxt.c
-    zbar/qrcode/rs.c
-    zbar/qrcode/isaac.c
-    zbar/qrcode/bch15_5.c
-    zbar/qrcode/binarize.c
-    zbar/qrcode/util.c
-    zbar/processor/posix.c
-    zbar/symbol.c
-    zbar/image.c
-    zbar/video.c
-    zbar/img_scanner.c
-    zbar/scanner.c
-    zbar/window.c
-    zbar/decoder.c
-    zbar/refcnt.c
-    zbar/processor/lock.c
-    zbar/processor.c
-    zbar/convert.c
-    zbar/error.c
-    zbar/video/null.c
-    zbar/processor/null.c
-    zbar/window/null.c
-
-    include/zbar.h
-    zbar/decoder/qr_finder.h
-    zbar/qrcode.h
-    zbar/qrcode/qrdec.h
-    zbar/qrcode/rs.h
-    zbar/qrcode/isaac.h
-    zbar/qrcode/bch15_5.h
-    zbar/qrcode/binarize.h
-    zbar/qrcode/util.h
-    zbar/error.h
-    zbar/symbol.h
-    zbar/image.h
-    zbar/processor.h
-    zbar/refcnt.h
-    zbar/timer.h
-    zbar/mutex.h
-    zbar/event.h
-    zbar/thread.h
-    zbar/window.h
-    zbar/video.h
-    zbar/img_scanner.h
-    zbar/decoder.h
-    zbar/processor/posix.h
-)
-target_compile_definitions(zbar
-    PRIVATE
-        ENABLE_QRCODE
-        ZBAR_VERSION_MAJOR=0
-        ZBAR_VERSION_MINOR=23
-)
-
-if (HAVE_INTTYPES_H)
-    target_compile_definitions(zbar PRIVATE HAVE_INTTYPES_H=1)
-endif()
-if (HAVE_FEATURES_H)
-    target_compile_definitions(zbar PRIVATE HAVE_FEATURES_H=1)
-endif()
-if (HAVE_POLL_H)
-    target_compile_definitions(zbar PRIVATE HAVE_POLL_H=1)
-endif()
-if (HAVE_SYS_TIME_H)
-    target_compile_definitions(zbar PRIVATE HAVE_SYS_TIME_H=1)
-endif()
-if(THREADS_FOUND)
-    target_compile_definitions(zbar PRIVATE HAVE_LIBPTHREAD=1)
-    target_link_libraries(zbar
-        PRIVATE
-            Threads::Threads
-    )
-endif()
-if (ICONV_FOUND)
-    target_link_libraries(zbar
-        PRIVATE
-            Iconv::Iconv
-    )
-endif()
-target_include_directories(zbar
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-    PRIVATE
-        zbar
-        zbar/qrcode
-        zbar/decoder
-)
-
-install(TARGETS zbar EXPORT zbarTargets
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib
-)
-install(
-    FILES include/zbar.h
-    DESTINATION include/zbar
-)
-# Package configuration
-if(THREADS_FOUND)
-    set(find_pkg_dependencies "find_dependency(Threads)")
+if (MSVC)
+# "-DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+find_package(iconv REQUIRED)
+find_package(libpng CONFIG REQUIRED)
+find_package(ZLIB REQUIRED)
 else()
-    set(find_pkg_dependencies "")
+# sudo apt-get install libpng-dev zlib1g-dev -y
+find_package(Threads REQUIRED )
+find_package(Iconv REQUIRED)
+find_package(PNG REQUIRED)
+find_package(ZLIB REQUIRED)
 endif()
-set(configPackageLocation ${CMAKE_INSTALL_LIBDIR}/cmake/zbar)
-set(inputConfigFile "${CMAKE_CURRENT_SOURCE_DIR}/cmake/zbarConfig.cmake.in")
-set(outputConfigFile "${CMAKE_CURRENT_BINARY_DIR}/zbarConfig.cmake")
-    configure_file(${inputConfigFile} ${outputConfigFile} @ONLY)
-install(FILES ${outputConfigFile}
-        DESTINATION ${configPackageLocation}
-)
-export(EXPORT zbarTargets
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/zbarTargets.cmake"
-    NAMESPACE zbar::
+
+# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+add_definitions(-DHAVE_CONFIG_H)
+include_directories(${ZBAR_ROOT_DIR}/include)
+include_directories(${ZBAR_ROOT_DIR}/zbar)
+include_directories(${ZBAR_ROOT_DIR}/zbar/decoder)
+include_directories(${ZBAR_ROOT_DIR}/zbar/qrcode)
+include_directories(${ZBAR_ROOT_DIR}/zbar/processor)
+include_directories(${ZBAR_ROOT_DIR}/zbar/video)
+include_directories(${ZBAR_ROOT_DIR}/zbar/window)
+include_directories(${ZBAR_ROOT_DIR}/config-internal)
+if (MSVC)
+include_directories(${ZBAR_ROOT_DIR}/win32)
+endif()
+
+file(GLOB ZBAR_DECODER_SRCS RELATIVE ${ZBAR_ROOT_DIR} zbar/decoder/*.c)
+file(GLOB ZBAR_QRCODE_SRCS RELATIVE ${ZBAR_ROOT_DIR} zbar/qrcode/*.c)
+
+set(ZBAR_SRCS
+    zbar/config.c
+    zbar/convert.c
+    zbar/decoder.c
+    zbar/error.c
+    zbar/image.c
+    zbar/img_scanner.c
+    zbar/misc.c
+    zbar/processor.c
+    zbar/refcnt.c
+    zbar/scanner.c
+    zbar/sqcode.c
+    zbar/symbol.c
+    zbar/video.c
+    zbar/window.c
 )
 
-install(EXPORT zbarTargets
-    NAMESPACE zbar::
-    DESTINATION ${configPackageLocation}
+
+if (MSVC)
+
+set(ZBAR_PROCESSOR_SRCS
+    zbar/processor/lock.c
+    zbar/processor/win.c
 )
+
+set(ZBAR_VIDEO_SRCS
+    zbar/video/dshow.c
+)
+
+set(ZBAR_WINDOW_SRCS
+    zbar/window/dib.c
+    zbar/window/win.c
+)
+
+add_library( zbar SHARED
+    zbar/libzbar.rc
+    win32/zbar.def
+    ${ZBAR_DECODER_SRCS}
+    ${ZBAR_QRCODE_SRCS}
+    ${ZBAR_PROCESSOR_SRCS}
+    ${ZBAR_VIDEO_SRCS}
+    ${ZBAR_WINDOW_SRCS}
+    ${ZBAR_SRCS}
+)
+
+SET(CMAKE_LINK_DEF_FILE_FLAG "/DEF:win32/zbar.def")
+
+target_link_libraries( zbar PRIVATE Iconv::Charset Iconv::Iconv winmm )
+
+add_executable( zbarcam zbarcam/zbarcam.c )
+target_link_libraries( zbarcam zbar )
+
+add_executable( scan_image examples/scan_image.c )
+target_link_libraries( scan_image zbar png ZLIB::ZLIB )
+
+else()
+
+set(ZBAR_PROCESSOR_SRCS
+    zbar/processor/lock.c
+    zbar/processor/posix.c
+    zbar/processor/null.c
+)
+
+set(ZBAR_VIDEO_SRCS
+    zbar/video/v4l.c
+    zbar/video/v4l2.c
+)
+
+set(ZBAR_WINDOW_SRCS
+    zbar/window/null.c
+)
+
+add_library( zbar SHARED
+    ${ZBAR_DECODER_SRCS}
+    ${ZBAR_QRCODE_SRCS}
+    ${ZBAR_PROCESSOR_SRCS}
+    ${ZBAR_VIDEO_SRCS}
+    ${ZBAR_WINDOW_SRCS}
+    ${ZBAR_SRCS}
+)
+
+add_definitions("-DLOCALEDIR=\"/tmp/\"")
+add_executable( zbarcam zbarcam/zbarcam.c )
+target_link_libraries( zbarcam zbar ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS} )
+
+add_executable( scan_image examples/scan_image.c )
+target_link_libraries( scan_image zbar png ZLIB::ZLIB ${CMAKE_THREAD_LIBS_INIT} ${CMAKE_DL_LIBS} )
+
+endif()
