@@ -23,22 +23,20 @@
 #ifndef _QZBARTHREAD_H_
 #define _QZBARTHREAD_H_
 
-#include <QThread>
-#include <QMutex>
-#include <QWaitCondition>
 #include <QEvent>
-#include <zbar/QZBarImage.h>
-#include <zbar/QZBar.h>
+#include <QMutex>
+#include <QThread>
+#include <QWaitCondition>
 #include <zbar.h>
+#include <zbar/QZBar.h>
+#include <zbar/QZBarImage.h>
 
-#define DEFAULT_WIDTH 640
+#define DEFAULT_WIDTH  640
 #define DEFAULT_HEIGHT 480
 
-namespace zbar {
-
-class QZBarThread
-    : public QThread,
-      public Image::Handler
+namespace zbar
+{
+class QZBarThread : public QThread, public Image::Handler
 {
     Q_OBJECT
 
@@ -51,30 +49,33 @@ public:
         Exit = QEvent::MaxUser
     };
 
-    class VideoDeviceEvent : public QEvent {
+    class VideoDeviceEvent : public QEvent
+    {
     public:
-        VideoDeviceEvent (const QString &device)
-            : QEvent((QEvent::Type)VideoDevice),
-              device(device)
-        { }
+        VideoDeviceEvent(const QString &device)
+            : QEvent((QEvent::Type)VideoDevice), device(device)
+        {
+        }
         const QString device;
     };
 
-    class VideoEnabledEvent : public QEvent {
+    class VideoEnabledEvent : public QEvent
+    {
     public:
-        VideoEnabledEvent (bool enabled)
-            : QEvent((QEvent::Type)VideoEnabled),
-              enabled(enabled)
-        { }
+        VideoEnabledEvent(bool enabled)
+            : QEvent((QEvent::Type)VideoEnabled), enabled(enabled)
+        {
+        }
         bool enabled;
     };
 
-    class ScanImageEvent : public QEvent {
+    class ScanImageEvent : public QEvent
+    {
     public:
-        ScanImageEvent (const QImage &image)
-            : QEvent((QEvent::Type)ScanImage),
-              image(image)
-        { }
+        ScanImageEvent(const QImage &image)
+            : QEvent((QEvent::Type)ScanImage), image(image)
+        {
+        }
         const QImage image;
     };
 
@@ -85,7 +86,7 @@ public:
     // (NB could(/should?) be QAbstractEventDispatcher except it doesn't
     //  work as documented!? ):
     // protected by mutex
-    QList<QEvent*> queue;
+    QList<QEvent *> queue;
 
     // shared state:
     // written by processor thread just after opening video or
@@ -104,10 +105,9 @@ public:
     QZBarThread(int verbosity = 0);
 
     int get_controls(int index, char **name = NULL, char **group = NULL,
-                     enum QZBar::ControlType *type = NULL,
-                     int *min = NULL, int *max = NULL,
-                     int *def = NULL, int *step = NULL);
-    QVector< QPair< int , QString > > get_menu(int index);
+                     enum QZBar::ControlType *type = NULL, int *min = NULL,
+                     int *max = NULL, int *def = NULL, int *step = NULL);
+    QVector<QPair<int, QString> > get_menu(int index);
     int set_control(char *name, bool value);
     int set_control(char *name, int value);
     int get_control(char *name, bool *value);
@@ -118,15 +118,13 @@ public:
         return scanner.set_config(cfgstr);
     }
 
-    int set_config(zbar_symbol_type_t symbology,
-                   zbar_config_t config,
+    int set_config(zbar_symbol_type_t symbology, zbar_config_t config,
                    int value)
     {
         return scanner.set_config(symbology, config, value);
     }
 
-    int get_config(zbar_symbol_type_t symbology,
-                   zbar_config_t config,
+    int get_config(zbar_symbol_type_t symbology, zbar_config_t config,
                    int &value)
     {
         return scanner.get_config(symbology, config, value);
@@ -134,14 +132,15 @@ public:
 
     void request_size(unsigned width, unsigned height);
 
-    int get_resolution(int index, unsigned &width, unsigned &height, float &max_fps);
+    int get_resolution(int index, unsigned &width, unsigned &height,
+                       float &max_fps);
 
     int request_dbus(bool enabled)
     {
         return scanner.request_dbus(enabled);
     }
 
-    void pushEvent (QEvent *e)
+    void pushEvent(QEvent *e)
     {
         QMutexLocker locker(&mutex);
         queue.append(e);
@@ -161,10 +160,10 @@ protected:
     void enableVideo(bool enable);
     void processImage(Image &image);
 
-    void clear ()
+    void clear()
     {
         window.clear();
-        if(image) {
+        if (image) {
             delete image;
             image = NULL;
         }

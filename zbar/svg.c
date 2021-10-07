@@ -21,9 +21,9 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "svg.h"
 
@@ -70,26 +70,29 @@ static const char svg_head[] =
 
 static FILE *svg = NULL;
 
-void svg_open (const char *name, double x, double y, double w, double h)
+void svg_open(const char *name, double x, double y, double w, double h)
 {
     svg = fopen(name, "w");
-    if(!svg) return;
+    if (!svg)
+        return;
 
     /* FIXME calc scaled size */
     fprintf(svg, svg_head, x, y, w, h);
 }
 
-void svg_close ()
+void svg_close()
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "</svg>\n");
     fclose(svg);
     svg = NULL;
 }
 
-void svg_commentf (const char *format, ...)
+void svg_commentf(const char *format, ...)
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "<!-- ");
     va_list args;
     va_start(args, format);
@@ -98,30 +101,28 @@ void svg_commentf (const char *format, ...)
     fprintf(svg, " -->\n");
 }
 
-void svg_image (const char *name, double width, double height)
+void svg_image(const char *name, double width, double height)
 {
-    if(!svg) return;
-    fprintf(svg, "<image width='%g' height='%g' xlink:href='%s'/>\n",
-            width, height, name);
+    if (!svg)
+        return;
+    fprintf(svg, "<image width='%g' height='%g' xlink:href='%s'/>\n", width,
+            height, name);
 }
 
-void svg_group_start (const char *cls,
-                      double deg,
-                      double sx,
-                      double sy,
-                      double x,
-                      double y)
+void svg_group_start(const char *cls, double deg, double sx, double sy,
+                     double x, double y)
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "<g class='%s'", cls);
-    if(sx != 1. || sy != 1 || deg || x || y) {
+    if (sx != 1. || sy != 1 || deg || x || y) {
         fprintf(svg, " transform='");
-        if(deg)
+        if (deg)
             fprintf(svg, "rotate(%g)", deg);
-        if(x || y)
+        if (x || y)
             fprintf(svg, "translate(%g,%g)", x, y);
-        if(sx != 1. || sy != 1.) {
-            if(!sy)
+        if (sx != 1. || sy != 1.) {
+            if (!sy)
                 fprintf(svg, "scale(%g)", sx);
             else
                 fprintf(svg, "scale(%g,%g)", sx, sy);
@@ -131,54 +132,56 @@ void svg_group_start (const char *cls,
     fprintf(svg, ">\n");
 }
 
-void svg_group_end ()
+void svg_group_end()
 {
     fprintf(svg, "</g>\n");
 }
 
-void svg_path_start (const char *cls,
-                     double scale,
-                     double x,
-                     double y)
+void svg_path_start(const char *cls, double scale, double x, double y)
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "<path class='%s'", cls);
-    if(scale != 1. || x || y) {
+    if (scale != 1. || x || y) {
         fprintf(svg, " transform='");
-        if(x || y)
+        if (x || y)
             fprintf(svg, "translate(%g,%g)", x, y);
-        if(scale != 1.)
+        if (scale != 1.)
             fprintf(svg, "scale(%g)", scale);
         fprintf(svg, "'");
     }
     fprintf(svg, " d='");
 }
 
-void svg_path_end ()
+void svg_path_end()
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "'/>\n");
 }
 
-void svg_path_close ()
+void svg_path_close()
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, "z");
 }
 
-void svg_path_moveto (svg_absrel_t abs, double x, double y)
+void svg_path_moveto(svg_absrel_t abs, double x, double y)
 {
-    if(!svg) return;
+    if (!svg)
+        return;
     fprintf(svg, " %c%g,%g", (abs) ? 'M' : 'm', x, y);
 }
 
 void svg_path_lineto(svg_absrel_t abs, double x, double y)
 {
-    if(!svg) return;
-    if(x && y)
+    if (!svg)
+        return;
+    if (x && y)
         fprintf(svg, "%c%g,%g", (abs) ? 'L' : 'l', x, y);
-    else if(x)
+    else if (x)
         fprintf(svg, "%c%g", (abs) ? 'H' : 'h', x);
-    else if(y)
+    else if (y)
         fprintf(svg, "%c%g", (abs) ? 'V' : 'v', y);
 }

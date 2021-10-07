@@ -35,9 +35,9 @@
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #ifdef MAJOR_IN_SYSMACROS
-#  include <sys/sysmacros.h>
+#include <sys/sysmacros.h>
 #endif
-typedef void (cb_t) (void *userdata, const char *device);
+typedef void(cb_t)(void *userdata, const char *device);
 
 struct devnodes {
     char *fname;
@@ -45,7 +45,7 @@ struct devnodes {
     int is_valid;
 };
 
-static unsigned int n_devices = 0;
+static unsigned int n_devices   = 0;
 static struct devnodes *devices = NULL;
 
 /*
@@ -85,7 +85,7 @@ static int sort_devices(const void *__a, const void *__b)
         val_a = 3;
     else if (strstr(a->fname, "char"))
         val_a = 4;
-    else    /* Customized names comes first */
+    else /* Customized names comes first */
         val_a = 0;
 
     if (strstr(b->fname, "by-id"))
@@ -96,7 +96,7 @@ static int sort_devices(const void *__a, const void *__b)
         val_b = 3;
     else if (strstr(b->fname, "char"))
         val_b = 4;
-    else   /* Customized names comes first */
+    else /* Customized names comes first */
         val_b = 0;
 
     if (val_a != val_b)
@@ -106,9 +106,7 @@ static int sort_devices(const void *__a, const void *__b)
     return strcmp(a->fname, b->fname);
 }
 
-static int handle_video_devs(const char *file,
-                             const struct stat *st,
-                             int flag)
+static int handle_video_devs(const char *file, const struct stat *st, int flag)
 {
     int dev_minor, first_device = -1, fd;
     unsigned int i;
@@ -181,7 +179,7 @@ static int handle_video_devs(const char *file,
 
     n_devices++;
 
-    return(0);
+    return (0);
 }
 
 /* scan /dev for v4l video devices and call add_device for each.
@@ -190,14 +188,12 @@ static int handle_video_devs(const char *file,
  * returns the index+1 of the default_device, or 0 if the default
  * was not specified.  NB *not* reentrant
  */
-int scan_video (cb_t add_dev,
-                void *userdata,
-                const char *default_dev)
+int scan_video(cb_t add_dev, void *userdata, const char *default_dev)
 {
     unsigned int i, idx = 0;
     int default_idx = -1, last_minor = -1;
 
-    if(ftw("/dev", handle_video_devs, 4)) {
+    if (ftw("/dev", handle_video_devs, 4)) {
         perror("search for video devices failed");
         return -1;
     }
@@ -225,7 +221,7 @@ int scan_video (cb_t add_dev,
     free(devices);
 
     n_devices = 0;
-    devices = NULL;
+    devices   = NULL;
 
-    return(default_idx);
+    return (default_idx);
 }

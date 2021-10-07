@@ -25,10 +25,10 @@
 // it's here to check that we didn't omit any dependencies
 #include <zbar.h>
 
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
     const char *video_dev = "/dev/video0";
-    if(argc > 1)
+    if (argc > 1)
         video_dev = argv[1];
 
     zbar::Processor proc = zbar::Processor(true, video_dev);
@@ -36,8 +36,8 @@ int main (int argc, char **argv)
     proc.set_active();
     try {
         proc.user_wait();
+    } catch (zbar::ClosedError &) {
     }
-    catch(zbar::ClosedError&) { }
-    
-    return(0);
+
+    return (0);
 }

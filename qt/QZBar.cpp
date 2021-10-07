@@ -21,19 +21,16 @@
 //  http://sourceforge.net/projects/zbar
 //------------------------------------------------------------------------
 
+#include <QX11Info>
 #include <qevent.h>
 #include <qurl.h>
-#include <QX11Info>
 #include <zbar/QZBar.h>
 #include "QZBarThread.h"
 
 using namespace zbar;
 
-QZBar::QZBar (QWidget *parent, int verbosity)
-    : QWidget(parent),
-      thread(NULL),
-      _videoDevice(),
-      _videoEnabled(false),
+QZBar::QZBar(QWidget *parent, int verbosity)
+    : QWidget(parent), thread(NULL), _videoDevice(), _videoEnabled(false),
       _attached(false)
 {
     setAttribute(Qt::WA_OpaquePaintEvent);
@@ -47,8 +44,8 @@ QZBar::QZBar (QWidget *parent, int verbosity)
     sizing.setHeightForWidth(true);
     setSizePolicy(sizing);
 
-    thread = new QZBarThread (verbosity);
-    if(testAttribute(Qt::WA_WState_Created)) {
+    thread = new QZBarThread(verbosity);
+    if (testAttribute(Qt::WA_WState_Created)) {
 #if QT_VERSION >= 0x050000
         thread->window.attach(QX11Info::display(), winId());
 #else
@@ -56,22 +53,19 @@ QZBar::QZBar (QWidget *parent, int verbosity)
 #endif
         _attached = 1;
     }
-    connect(thread, SIGNAL(videoOpened(bool)),
-            this, SIGNAL(videoOpened(bool)));
-    connect(this, SIGNAL(videoOpened(bool)),
-            this, SLOT(sizeChange()));
-    connect(thread, SIGNAL(update()),
-            this, SLOT(update()));
-    connect(thread, SIGNAL(decoded(int, const QString&)),
-            this, SIGNAL(decoded(int, const QString&)));
-    connect(thread, SIGNAL(decodedText(const QString&)),
-            this, SIGNAL(decodedText(const QString&)));
+    connect(thread, SIGNAL(videoOpened(bool)), this, SIGNAL(videoOpened(bool)));
+    connect(this, SIGNAL(videoOpened(bool)), this, SLOT(sizeChange()));
+    connect(thread, SIGNAL(update()), this, SLOT(update()));
+    connect(thread, SIGNAL(decoded(int, const QString &)), this,
+            SIGNAL(decoded(int, const QString &)));
+    connect(thread, SIGNAL(decodedText(const QString &)), this,
+            SIGNAL(decodedText(const QString &)));
     thread->start();
 }
 
-QZBar::~QZBar ()
+QZBar::~QZBar()
 {
-    if(thread) {
+    if (thread) {
         thread->pushEvent(new QEvent((QEvent::Type)QZBarThread::Exit));
         thread->wait();
         delete thread;
@@ -79,42 +73,41 @@ QZBar::~QZBar ()
     }
 }
 
-QPaintEngine *QZBar::paintEngine () const
+QPaintEngine *QZBar::paintEngine() const
 {
-    return(NULL);
+    return (NULL);
 }
 
-QString QZBar::videoDevice () const
+QString QZBar::videoDevice() const
 {
-    return(_videoDevice);
+    return (_videoDevice);
 }
 
-void QZBar::setVideoDevice (const QString& videoDevice)
+void QZBar::setVideoDevice(const QString &videoDevice)
 {
-    if(!thread)
+    if (!thread)
         return;
-    if(_videoDevice != videoDevice) {
-        _videoDevice = videoDevice;
+    if (_videoDevice != videoDevice) {
+        _videoDevice  = videoDevice;
         _videoEnabled = _attached && !videoDevice.isEmpty();
-        if(_attached)
+        if (_attached)
             thread->pushEvent(new QZBarThread::VideoDeviceEvent(videoDevice));
     }
 }
 
 int QZBar::get_controls(int index, char **name, char **group,
-                        enum ControlType *type,
-                        int *min, int *max, int *def, int *step)
+                        enum ControlType *type, int *min, int *max, int *def,
+                        int *step)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
-    return thread->get_controls(index, name, group, type,
-                                min, max, def, step);
+    return thread->get_controls(index, name, group, type, min, max, def, step);
 }
 
 void QZBar::request_size(unsigned width, unsigned height, bool trigger)
 {
-    if(!thread)
+    if (!thread)
         return;
 
     thread->request_size(width, height);
@@ -122,9 +115,10 @@ void QZBar::request_size(unsigned width, unsigned height, bool trigger)
         thread->pushEvent(new QEvent((QEvent::Type)QZBarThread::ReOpen));
 }
 
-int QZBar::get_resolution(int index, unsigned &width, unsigned &height, float &max_fps)
+int QZBar::get_resolution(int index, unsigned &width, unsigned &height,
+                          float &max_fps)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->get_resolution(index, width, height, max_fps);
@@ -132,7 +126,7 @@ int QZBar::get_resolution(int index, unsigned &width, unsigned &height, float &m
 
 unsigned QZBar::videoWidth()
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->reqWidth;
@@ -140,26 +134,25 @@ unsigned QZBar::videoWidth()
 
 unsigned QZBar::videoHeight()
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->reqHeight;
 }
 
-QVector< QPair< int , QString > > QZBar::get_menu(int index)
+QVector<QPair<int, QString> > QZBar::get_menu(int index)
 {
-    if(!thread) {
-        QVector< QPair< int , QString > > empty;
+    if (!thread) {
+        QVector<QPair<int, QString> > empty;
         return empty;
     }
 
     return thread->get_menu(index);
 }
 
-
 int QZBar::set_control(char *name, bool value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->set_control(name, value);
@@ -167,7 +160,7 @@ int QZBar::set_control(char *name, bool value)
 
 int QZBar::set_control(char *name, int value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->set_control(name, value);
@@ -175,7 +168,7 @@ int QZBar::set_control(char *name, int value)
 
 int QZBar::get_control(char *name, bool *value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->get_control(name, value);
@@ -183,7 +176,7 @@ int QZBar::get_control(char *name, bool *value)
 
 int QZBar::get_control(char *name, int *value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->get_control(name, value);
@@ -191,27 +184,25 @@ int QZBar::get_control(char *name, int *value)
 
 int QZBar::set_config(std::string cfgstr)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->set_config(cfgstr);
 }
 
-int QZBar::set_config(zbar_symbol_type_t symbology,
-                      zbar_config_t config,
+int QZBar::set_config(zbar_symbol_type_t symbology, zbar_config_t config,
                       int value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->set_config(symbology, config, value);
 }
 
-int QZBar::get_config(zbar_symbol_type_t symbology,
-                      zbar_config_t config,
+int QZBar::get_config(zbar_symbol_type_t symbology, zbar_config_t config,
                       int &value)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->get_config(symbology, config, value);
@@ -219,59 +210,56 @@ int QZBar::get_config(zbar_symbol_type_t symbology,
 
 int QZBar::request_dbus(bool enabled)
 {
-    if(!thread)
+    if (!thread)
         return 0;
 
     return thread->request_dbus(enabled);
 }
 
-
-bool QZBar::isVideoEnabled () const
+bool QZBar::isVideoEnabled() const
 {
-    return(_videoEnabled);
+    return (_videoEnabled);
 }
 
-void QZBar::setVideoEnabled (bool videoEnabled)
+void QZBar::setVideoEnabled(bool videoEnabled)
 {
-    if(!thread)
+    if (!thread)
         return;
-    if(_videoEnabled != videoEnabled) {
+    if (_videoEnabled != videoEnabled) {
         _videoEnabled = videoEnabled;
         thread->pushEvent(new QZBarThread::VideoEnabledEvent(videoEnabled));
     }
 }
 
-bool QZBar::isVideoOpened () const
+bool QZBar::isVideoOpened() const
 {
-    if(!thread)
-        return(false);
+    if (!thread)
+        return (false);
     QMutexLocker locker(&thread->mutex);
-    return(thread->_videoOpened);
+    return (thread->_videoOpened);
 }
 
-void QZBar::scanImage (const QImage &image)
+void QZBar::scanImage(const QImage &image)
 {
-    if(!thread)
+    if (!thread)
         return;
     thread->pushEvent(new QZBarThread::ScanImageEvent(image));
 }
 
-void QZBar::dragEnterEvent (QDragEnterEvent *event)
+void QZBar::dragEnterEvent(QDragEnterEvent *event)
 {
-    if(event->mimeData()->hasImage() ||
-       event->mimeData()->hasUrls())
+    if (event->mimeData()->hasImage() || event->mimeData()->hasUrls())
         event->acceptProposedAction();
 }
 
-void QZBar::dropEvent (QDropEvent *event)
+void QZBar::dropEvent(QDropEvent *event)
 {
-    if(event->mimeData()->hasImage()) {
+    if (event->mimeData()->hasImage()) {
         QImage image = qvariant_cast<QImage>(event->mimeData()->imageData());
         scanImage(image);
         event->setDropAction(Qt::CopyAction);
         event->accept();
-    }
-    else {
+    } else {
         // FIXME TBD load URIs and queue for processing
 #if 0
         std::cerr << "drop: "
@@ -286,66 +274,65 @@ void QZBar::dropEvent (QDropEvent *event)
     }
 }
 
-QSize QZBar::sizeHint () const
+QSize QZBar::sizeHint() const
 {
-    if(!thread)
-        return(QSize(640, 480));
+    if (!thread)
+        return (QSize(640, 480));
     QMutexLocker locker(&thread->mutex);
-    return(QSize(thread->reqWidth, thread->reqHeight));
+    return (QSize(thread->reqWidth, thread->reqHeight));
 }
 
-int QZBar::heightForWidth (int width) const
+int QZBar::heightForWidth(int width) const
 {
-    if(thread) {
+    if (thread) {
         QMutexLocker locker(&thread->mutex);
-        int base_width = thread->reqWidth;
+        int base_width  = thread->reqWidth;
         int base_height = thread->reqHeight;
-        if(base_width > 0 && base_height > 0)
-            return(base_height * width / base_width);
+        if (base_width > 0 && base_height > 0)
+            return (base_height * width / base_width);
     }
-    return(width * 3 / 4);
+    return (width * 3 / 4);
 }
 
-void QZBar::paintEvent (QPaintEvent *event)
+void QZBar::paintEvent(QPaintEvent *event)
 {
     try {
-        if(thread)
+        if (thread)
             thread->window.redraw();
-    }
-    catch(Exception&) {
+    } catch (Exception &) {
         // sometimes Qt attempts to paint the widget before it's parented(?)
         // just ignore this (can't throw from event anyway)
     }
 }
 
-void QZBar::resizeEvent (QResizeEvent *event)
+void QZBar::resizeEvent(QResizeEvent *event)
 {
     QSize size = event->size();
     try {
-        if(thread)
+        if (thread)
             thread->window.resize(size.rwidth(), size.rheight());
+    } catch (Exception &) { /* ignore */
     }
-    catch(Exception&) { /* ignore */ }
 }
 
 void QZBar::changeEvent(QEvent *event)
 {
     try {
         QMutexLocker locker(&thread->mutex);
-        if(event->type() == QEvent::ParentChange)
+        if (event->type() == QEvent::ParentChange)
 #if QT_VERSION >= 0x050000
             thread->window.attach(QX11Info::display(), winId());
 #else
             thread->window.attach(x11Info().display(), winId());
 #endif
 
+    } catch (Exception &) { /* ignore (FIXME do something w/error) */
     }
-    catch(Exception&) { /* ignore (FIXME do something w/error) */ }
 }
 
-void QZBar::attach ()
+void QZBar::attach()
 {
-    if(_attached)
+    if (_attached)
         return;
 
     try {
@@ -358,19 +345,19 @@ void QZBar::attach ()
         _attached = 1;
 
         _videoEnabled = !_videoDevice.isEmpty();
-        if(_videoEnabled)
+        if (_videoEnabled)
             thread->pushEvent(new QZBarThread::VideoDeviceEvent(_videoDevice));
+    } catch (Exception &) { /* ignore (FIXME do something w/error) */
     }
-    catch(Exception&) { /* ignore (FIXME do something w/error) */ }
 }
 
-void QZBar::showEvent (QShowEvent *event)
+void QZBar::showEvent(QShowEvent *event)
 {
-    if(thread && !_attached)
+    if (thread && !_attached)
         attach();
 }
 
-void QZBar::sizeChange ()
+void QZBar::sizeChange()
 {
     update();
     updateGeometry();

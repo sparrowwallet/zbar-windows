@@ -47,7 +47,7 @@
 #undef HAVE_GETPAGESIZE
 
 /* Define if you have the iconv() function and it works. */
-#define  HAVE_ICONV 1
+#define HAVE_ICONV 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 //#define HAVE_INTTYPES_H 1
@@ -68,7 +68,7 @@
 #undef HAVE_LINUX_VIDEODEV_H
 
 /* Define to 1 if you have the <memory.h> header file. */
-#define  HAVE_MEMORY_H 1
+#define HAVE_MEMORY_H 1
 
 /* Define to 1 if you have the `memset' function. */
 #define HAVE_MEMSET 1
@@ -197,9 +197,9 @@
 //HAVE_LIBPTHREAD=1
 //CMAKE_INTDIR="Debug"
 
-#define PRIX32    "lX"
-#define PRIx32    "lx"
-#define PRId64    "lld"
+#define PRIX32 "lX"
+#define PRIx32 "lx"
+#define PRId64 "lld"
 
 #define snprintf _snprintf
 
@@ -250,6 +250,5 @@
 //#undef uintptr_t
 
 #ifndef X_DISPLAY_MISSING
-# define HAVE_X
+#define HAVE_X
 #endif
-

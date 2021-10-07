@@ -46,7 +46,6 @@ typedef enum {
 
 } ZBarReaderControllerCameraMode;
 
-
 @class ZBarReaderController, ZBarHelpController;
 
 @protocol ZBarReaderDelegate <UIImagePickerControllerDelegate>
@@ -54,17 +53,14 @@ typedef enum {
 
 // called when no barcode is found in an image selected by the user.
 // if retry is NO, the delegate *must* dismiss the controller
-- (void) readerControllerDidFailToRead: (ZBarReaderController*) reader
-                             withRetry: (BOOL) retry;
+- (void)readerControllerDidFailToRead:(ZBarReaderController *)reader
+                            withRetry:(BOOL)retry;
 
 @end
 
-
 @interface ZBarReaderController
-    : UIImagePickerController
-    < UINavigationControllerDelegate,
-      UIImagePickerControllerDelegate >
-{
+    : UIImagePickerController <UINavigationControllerDelegate,
+                               UIImagePickerControllerDelegate> {
     ZBarImageScanner *scanner;
     ZBarHelpController *help;
     UIView *overlay, *boxView;
@@ -74,7 +70,7 @@ typedef enum {
     UIBarButtonItem *cancelBtn, *scanBtn, *space[3];
     UIButton *infoBtn;
 
-    id <ZBarReaderDelegate> readerDelegate;
+    id<ZBarReaderDelegate> readerDelegate;
     BOOL showsZBarControls, showsHelpOnFail, takesPicture, enableCache;
     ZBarReaderControllerCameraMode cameraMode;
     CGRect scanCrop;
@@ -91,7 +87,7 @@ typedef enum {
 @property (readonly, nonatomic) ZBarImageScanner *scanner;
 
 // barcode result recipient (NB don't use delegate)
-@property (nonatomic, assign) id <ZBarReaderDelegate> readerDelegate;
+@property (nonatomic, assign) id<ZBarReaderDelegate> readerDelegate;
 
 // whether to use alternate control set
 @property (nonatomic) BOOL showsZBarControls;
@@ -132,11 +128,11 @@ typedef enum {
 // you don't also want to create your own help view.  only send this
 // message when the reader is displayed.  the argument will be passed
 // to the onZBarHelp() javascript function.
-- (void) showHelpWithReason: (NSString*) reason;
+- (void)showHelpWithReason:(NSString *)reason;
 
 // direct scanner interface - scan UIImage and return something enumerable
-- (id <NSFastEnumeration>) scanImage: (CGImageRef) image;
+- (id<NSFastEnumeration>)scanImage:(CGImageRef)image;
 
 @end
 
-extern NSString* const ZBarReaderControllerResults;
+extern NSString *const ZBarReaderControllerResults;

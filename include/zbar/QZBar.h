@@ -28,14 +28,14 @@
 
 #include <QtGui>
 #if QT_VERSION >= 0x050000
-#  include <QtWidgets>
+#include <QtWidgets>
 #else
-#  include <qwidget.h>
+#include <qwidget.h>
 #endif
 #include <zbar.h>
 
-namespace zbar {
-
+namespace zbar
+{
 class QZBarThread;
 
 /// barcode reader Qt4 widget.
@@ -55,20 +55,16 @@ class QZBar : public QWidget
     /// QZBar::videoEnabled
     ///
     /// @see videoDevice(), setVideoDevice()
-    Q_PROPERTY(QString videoDevice
-               READ videoDevice
-               WRITE setVideoDevice
-               DESIGNABLE false)
+    Q_PROPERTY(QString videoDevice READ videoDevice WRITE setVideoDevice
+                   DESIGNABLE false)
 
     /// video device streaming state.
     ///
     /// use to pause/resume video scanning.
     ///
     /// @see isVideoEnabled(), setVideoEnabled()
-    Q_PROPERTY(bool videoEnabled
-               READ isVideoEnabled
-               WRITE setVideoEnabled
-               DESIGNABLE false)
+    Q_PROPERTY(bool videoEnabled READ isVideoEnabled WRITE setVideoEnabled
+                   DESIGNABLE false)
 
     /// video device opened state.
     ///
@@ -77,12 +73,9 @@ class QZBar : public QWidget
     /// will also cause the device to be closed
     ///
     /// @see isVideoOpened()
-    Q_PROPERTY(bool videoOpened
-               READ isVideoOpened
-               DESIGNABLE false)
+    Q_PROPERTY(bool videoOpened READ isVideoOpened DESIGNABLE false)
 
 public:
-
     // Should match the types at video_control_type_e
     // get_controls() will do the mapping between the two types.
     enum ControlType {
@@ -142,12 +135,11 @@ public Q_SLOTS:
 
     /// get controls from the camera device
     int get_controls(int index, char **name = NULL, char **group = NULL,
-                     enum ControlType *type = NULL,
-                     int *min = NULL, int *max = NULL,
-                     int *def = NULL, int *step = NULL);
+                     enum ControlType *type = NULL, int *min = NULL,
+                     int *max = NULL, int *def = NULL, int *step = NULL);
 
     /// Get items for control menus
-    QVector< QPair< int , QString > > get_menu(int index);
+    QVector<QPair<int, QString> > get_menu(int index);
 
     // get/set controls from the camera device
     int set_control(char *name, bool value);
@@ -156,14 +148,13 @@ public Q_SLOTS:
     int get_control(char *name, int *value);
 
     int set_config(std::string cfgstr);
-    int set_config(zbar_symbol_type_t symbology,
-                   zbar_config_t config,
+    int set_config(zbar_symbol_type_t symbology, zbar_config_t config,
                    int value);
-    int get_config(zbar_symbol_type_t symbology,
-                   zbar_config_t config,
+    int get_config(zbar_symbol_type_t symbology, zbar_config_t config,
                    int &value);
     void request_size(unsigned width, unsigned height, bool trigger = true);
-    int get_resolution(int index, unsigned &width, unsigned &height, float &max_fps);
+    int get_resolution(int index, unsigned &width, unsigned &height,
+                       float &max_fps);
     unsigned videoWidth();
     unsigned videoHeight();
     int request_dbus(bool enabled);
@@ -191,12 +182,12 @@ Q_SIGNALS:
 
 protected:
     void attach();
-    void showEvent(QShowEvent*);
-    void paintEvent(QPaintEvent*);
-    void resizeEvent(QResizeEvent*);
-    void changeEvent(QEvent*);
-    void dragEnterEvent(QDragEnterEvent*);
-    void dropEvent(QDropEvent*);
+    void showEvent(QShowEvent *);
+    void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
+    void changeEvent(QEvent *);
+    void dragEnterEvent(QDragEnterEvent *);
+    void dropEvent(QDropEvent *);
 
 protected Q_SLOTS:
     void sizeChange();
