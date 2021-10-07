@@ -3,7 +3,6 @@
    GNU Lesser General Public License as published by the Free Software
    Foundation; either version 2.1 of the License, or (at your option) any later
    version.*/
-#include "qrdec.h"
 #include <config.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -15,6 +14,7 @@
 #include "image.h"
 #include "isaac.h"
 #include "qrcode.h"
+#include "qrdec.h"
 #include "rs.h"
 #include "svg.h"
 #include "util.h"
