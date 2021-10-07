@@ -87,7 +87,7 @@ gboolean zbar_gtk_image_from_pixbuf(zbar_image_t *zimg, GdkPixbuf *pixbuf)
 
     nchannels = gdk_pixbuf_get_n_channels(pixbuf);
     bps       = gdk_pixbuf_get_bits_per_sample(pixbuf);
-    type     = 0;
+    type      = 0;
 
     /* these are all guesses... */
     if (nchannels == 3 && bps == 8)
@@ -253,7 +253,7 @@ static gboolean zbar_processing_idle_callback(gpointer data)
 {
     ZBarGtk *self        = data;
     ZBarGtkPrivate *zbar = ZBAR_GTK_PRIVATE(self->_private);
-    GValue *msg	         = g_async_queue_try_pop(zbar->queue);
+    GValue *msg          = g_async_queue_try_pop(zbar->queue);
     GType type;
 
     if (!msg) {
@@ -302,7 +302,7 @@ static gboolean zbar_processing_idle_callback(gpointer data)
         zbar->video_enabled_state = (state != 0);
     } else if (type == G_TYPE_STRING) {
         /* open new video device */
-        const char *video_device  = g_value_get_string(msg);
+        const char *video_device = g_value_get_string(msg);
 
         zbar->video_enabled_state = zbar_gtk_video_open(self, video_device);
     } else if (type == GDK_TYPE_PIXBUF) {
@@ -460,7 +460,7 @@ static void zbar_get_preferred_width(GtkWidget *widget, gint *minimum_width,
 
     screen_width = geo.width;
 #else
-    screen_width = gdk_screen_width();
+    screen_width  = gdk_screen_width();
 #endif
 
     if (zbar->req_width > screen_width) {

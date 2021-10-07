@@ -262,9 +262,9 @@ public:
     /// @since 0.4
     Image convert(unsigned long format, unsigned width, unsigned height) const
     {
-	zbar_image_t *img;
+        zbar_image_t *img;
 
-	img = zbar_image_convert_resize(_img, format, width, height);
+        img = zbar_image_convert_resize(_img, format, width, height);
         if (img)
             return (Image(img));
         throw FormatError();

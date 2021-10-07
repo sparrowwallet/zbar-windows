@@ -446,16 +446,16 @@ PyTypeObject zbarImage_Type = {
 
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
 
-    .tp_doc                                = image_doc,
-    .tp_basicsize                          = sizeof(zbarImage),
-    .tp_new   = (newfunc)image_new,
-    .tp_init  = (initproc)image_init,
-    .tp_traverse = (traverseproc)image_traverse,
-    .tp_clear    = (inquiry)image_clear,
-    .tp_dealloc  = (destructor)image_dealloc,
-    .tp_getset   = image_getset,
-    .tp_methods  = image_methods,
-    .tp_iter     = (getiterfunc)image_iter,
+    .tp_doc       = image_doc,
+    .tp_basicsize = sizeof(zbarImage),
+    .tp_new       = (newfunc)image_new,
+    .tp_init      = (initproc)image_init,
+    .tp_traverse  = (traverseproc)image_traverse,
+    .tp_clear     = (inquiry)image_clear,
+    .tp_dealloc   = (destructor)image_dealloc,
+    .tp_getset    = image_getset,
+    .tp_methods   = image_methods,
+    .tp_iter      = (getiterfunc)image_iter,
 };
 
 zbarImage *zbarImage_FromImage(zbar_image_t *zimg)

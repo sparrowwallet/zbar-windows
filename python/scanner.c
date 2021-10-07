@@ -182,12 +182,12 @@ PyTypeObject zbarScanner_Type = {
 
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
 
-    .tp_doc                                = scanner_doc,
-    .tp_basicsize                          = sizeof(zbarScanner),
-    .tp_new   = (newfunc)scanner_new,
-    .tp_traverse = (traverseproc)scanner_traverse,
-    .tp_clear    = (inquiry)scanner_clear,
-    .tp_dealloc  = (destructor)scanner_dealloc,
-    .tp_getset   = scanner_getset,
-    .tp_methods  = scanner_methods,
+    .tp_doc       = scanner_doc,
+    .tp_basicsize = sizeof(zbarScanner),
+    .tp_new       = (newfunc)scanner_new,
+    .tp_traverse  = (traverseproc)scanner_traverse,
+    .tp_clear     = (inquiry)scanner_clear,
+    .tp_dealloc   = (destructor)scanner_dealloc,
+    .tp_getset    = scanner_getset,
+    .tp_methods   = scanner_methods,
 };

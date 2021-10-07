@@ -179,8 +179,8 @@ PyTypeObject zbarEnum_Type = {
 
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
 
-    .tp_doc                                = enum_doc,
-    .tp_basicsize                          = sizeof(zbarEnum),
+    .tp_doc        = enum_doc,
+    .tp_basicsize  = sizeof(zbarEnum),
     .tp_dictoffset = offsetof(zbarEnum, byname),
     .tp_traverse   = (traverseproc)enum_traverse,
     .tp_clear      = (inquiry)enum_clear,

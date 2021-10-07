@@ -1218,9 +1218,11 @@ int _zbar_v4l2_probe(zbar_video_t *vdo)
         vdo->iomode = VIDEO_READWRITE;
 
     zprintf(1, "using I/O mode: %s\n",
-            (vdo->iomode == VIDEO_READWRITE) ? "READWRITE" :
-            (vdo->iomode == VIDEO_MMAP) ? "MMAP" :
-            (vdo->iomode == VIDEO_USERPTR) ? "USERPTR" : "<UNKNOWN>");
+            (vdo->iomode == VIDEO_READWRITE) ?
+                "READWRITE" :
+                (vdo->iomode == VIDEO_MMAP) ?
+                "MMAP" :
+                (vdo->iomode == VIDEO_USERPTR) ? "USERPTR" : "<UNKNOWN>");
 
     vdo->intf        = VIDEO_V4L2;
     vdo->init        = v4l2_init;

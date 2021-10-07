@@ -258,7 +258,7 @@ static PyObject *processor_user_wait(zbarProcessor *self, PyObject *args,
                                      PyObject *kwds)
 {
     int timeout           = -1;
-    int rc		  = -1;
+    int rc                = -1;
     static char *kwlist[] = { "timeout", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|O&", kwlist,
@@ -280,7 +280,7 @@ static PyObject *processor_process_one(zbarProcessor *self, PyObject *args,
                                        PyObject *kwds)
 {
     int timeout           = -1;
-    int rc		  = -1;
+    int rc                = -1;
     static char *kwlist[] = { "timeout", NULL };
 
     if (!PyArg_ParseTupleAndKeywords(args, kwds, "|O&", kwlist,
@@ -445,12 +445,12 @@ PyTypeObject zbarProcessor_Type = {
 
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
 
-    .tp_doc                                = processor_doc,
-    .tp_basicsize                          = sizeof(zbarProcessor),
-    .tp_new   = (newfunc)processor_new,
-    .tp_traverse = (traverseproc)processor_traverse,
-    .tp_clear    = (inquiry)processor_clear,
-    .tp_dealloc  = (destructor)processor_dealloc,
-    .tp_getset   = processor_getset,
-    .tp_methods  = processor_methods,
+    .tp_doc       = processor_doc,
+    .tp_basicsize = sizeof(zbarProcessor),
+    .tp_new       = (newfunc)processor_new,
+    .tp_traverse  = (traverseproc)processor_traverse,
+    .tp_clear     = (inquiry)processor_clear,
+    .tp_dealloc   = (destructor)processor_dealloc,
+    .tp_getset    = processor_getset,
+    .tp_methods   = processor_methods,
 };

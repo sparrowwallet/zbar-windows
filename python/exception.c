@@ -111,13 +111,13 @@ PyTypeObject zbarException_Type = {
 
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
 
-    .tp_basicsize                          = sizeof(zbarException),
-    .tp_init  = (initproc)exc_init,
-    .tp_traverse = (traverseproc)exc_traverse,
-    .tp_clear    = (inquiry)exc_clear,
-    .tp_dealloc  = (destructor)exc_dealloc,
-    .tp_str      = (reprfunc)exc_str,
-    .tp_getset   = exc_getset,
+    .tp_basicsize = sizeof(zbarException),
+    .tp_init      = (initproc)exc_init,
+    .tp_traverse  = (traverseproc)exc_traverse,
+    .tp_clear     = (inquiry)exc_clear,
+    .tp_dealloc   = (destructor)exc_dealloc,
+    .tp_str       = (reprfunc)exc_str,
+    .tp_getset    = exc_getset,
 };
 
 #endif

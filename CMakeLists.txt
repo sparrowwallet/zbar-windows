@@ -14,7 +14,7 @@ find_file(HAVE_FEATURES_H "features.h" DOC "features.h exists")
 find_file(HAVE_POLL_H "poll.h" DOC "poll.h exists")
 find_file(HAVE_SYS_TIME_H "sys/time.h" DOC "sys/time.h exists")
 
-add_library(zbar
+add_library(zbar SHARED
     zbar/decoder/qr_finder.c
     zbar/qrcode/qrdec.c
     zbar/qrcode/qrdectxt.c
@@ -69,7 +69,6 @@ target_compile_definitions(zbar
         ENABLE_QRCODE
         ZBAR_VERSION_MAJOR=0
         ZBAR_VERSION_MINOR=23
-        ZBAR_VERSION_PATCH=0
 )
 
 if (HAVE_INTTYPES_H)

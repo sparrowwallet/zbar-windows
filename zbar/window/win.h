@@ -43,6 +43,7 @@ struct window_state_s {
 struct zbar_window_s;
 struct zbar_image_s;
 
-extern int _zbar_window_bih_init(struct zbar_window_s *w, struct zbar_image_s *img);
+extern int _zbar_window_bih_init(struct zbar_window_s *w,
+                                 struct zbar_image_s *img);
 
 #endif
