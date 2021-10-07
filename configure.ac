@@ -492,7 +492,7 @@ AS_IF([test "x$with_npapi" != "xno"],
 AM_CONDITIONAL([HAVE_NPAPI], [test "x$with_npapi" = "xyes"])
 
 dnl GTK
-dnl For now, defaults to GTK version 2
+dnl For now, defaults to GTK version 3
 
 AC_ARG_WITH([gtk],
   [AS_HELP_STRING([--with-gtk],
@@ -500,7 +500,7 @@ AC_ARG_WITH([gtk],
   [AS_IF([test "x$with_gtk" != "xno"   && test "x$with_gtk" != "xauto" &&
           test "x$with_gtk" != "xgtk2" && test "x$with_gtk" != "xgtk3"],
          [echo "Invalid value for --with-gtk. Falling back to 'no'"
-          with_gtk="xno"])],
+          with_gtk="no"])],
   [with_gtk="auto"])
 
 AC_ARG_VAR([GLIB_GENMARSHAL], [full path to glib-genmarshal])
@@ -728,7 +728,7 @@ AC_ARG_WITH([java],
   [],
   [with_java="check"])
 
-JAVAC=${JAVAC/ecj/ecj -1.5}
+JAVAC=$(echo $JAVAC |sed 's/ecj/ecj -1.5/')
 
 dnl Javah was obsoleted on Java 8 and removed on Java 11. So, we need to
 dnl look strictly at the $JAVA_HOME in order to avoid mixing different versions
