@@ -186,9 +186,11 @@ static PyGetSetDef symbol_getset[] = {
 
 PyTypeObject zbarSymbol_Type = {
     PyVarObject_HEAD_INIT(NULL, 0).tp_name = "zbar.Symbol",
+
+    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
+
     .tp_doc                                = symbol_doc,
     .tp_basicsize                          = sizeof(zbarSymbol),
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
     .tp_traverse = (traverseproc)symbol_traverse,
     .tp_clear    = (inquiry)symbol_clear,
     .tp_dealloc  = (destructor)symbol_dealloc,

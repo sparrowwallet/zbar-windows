@@ -22,6 +22,9 @@
  *------------------------------------------------------------------------*/
 
 #include <assert.h>
+#if defined(_MSC_VER)
+#include <WinSock2.h>
+#endif
 #include <windows.h>
 #include "processor.h"
 

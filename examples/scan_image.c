@@ -28,8 +28,8 @@ static void get_data(const char *name, int *width, int *height, void **raw)
     int color, bits;
     png_bytep *rows;
     int i;
-
     FILE *file = fopen(name, "rb");
+
     if (!file)
         exit(2);
     png = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
@@ -55,13 +55,16 @@ static void get_data(const char *name, int *width, int *height, void **raw)
         png_set_strip_alpha(png);
     if (color & PNG_COLOR_MASK_COLOR)
         png_set_rgb_to_gray_fixed(png, 1, -1, -1);
+
     /* allocate image */
     *width  = png_get_image_width(png, info);
     *height = png_get_image_height(png, info);
     *raw    = (png_bytep)calloc(*width * *height, sizeof(png_byte));
     rows    = (png_bytep *)calloc(*height, sizeof(*rows));
+
     for (i = 0; i < *height; i++)
         rows[i] = ((png_bytep)(*raw)) + (*width * i);
+
     png_read_image(png, rows);
     free(rows);
 }
@@ -102,6 +105,7 @@ int main(int argc, char **argv)
         /* do something useful with results */
         zbar_symbol_type_t typ = zbar_symbol_get_type(symbol);
         const char *data       = zbar_symbol_get_data(symbol);
+
         printf("decoded %s symbol \"%s\"\n", zbar_get_symbol_name(typ), data);
     }
 

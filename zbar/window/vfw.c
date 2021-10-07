@@ -24,7 +24,7 @@
 #include <vfw.h>
 #include "window.h"
 
-extern int _zbar_window_bih_init(zbar_window_t *w, zbar_image_t *img);
+extern int _zbar_window_bih_init(struct zbar_window_s *w, struct zbar_image_s *img);
 
 static int vfw_cleanup(zbar_window_t *w)
 {

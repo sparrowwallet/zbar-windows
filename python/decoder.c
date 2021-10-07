@@ -346,9 +346,11 @@ static PyMethodDef decoder_methods[] = {
 
 PyTypeObject zbarDecoder_Type = {
     PyVarObject_HEAD_INIT(NULL, 0).tp_name = "zbar.Decoder",
+
+    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
+
     .tp_doc                                = decoder_doc,
     .tp_basicsize                          = sizeof(zbarDecoder),
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
     .tp_new   = (newfunc)decoder_new,
     .tp_traverse = (traverseproc)decoder_traverse,
     .tp_clear    = (inquiry)decoder_clear,

@@ -21,7 +21,7 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
-#include <config.h>
+#include "config.h"
 #include <stddef.h>
 #include <stdlib.h> /* malloc, free, abs */
 #include <string.h> /* memset */

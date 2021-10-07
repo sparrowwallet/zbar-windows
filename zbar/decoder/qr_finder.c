@@ -21,8 +21,8 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#include "config.h"
 #include <assert.h>
-#include <config.h>
 
 #include <zbar.h>
 

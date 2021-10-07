@@ -186,6 +186,6 @@ private:
     bool videoEnabled;
 };
 
-};
+}; // namespace zbar
 
 #endif

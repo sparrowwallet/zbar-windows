@@ -287,7 +287,7 @@ int _zbar_window_draw_logo(zbar_window_t *w)
     return (0);
 }
 
-int _zbar_window_bih_init(zbar_window_t *w, zbar_image_t *img)
+int _zbar_window_bih_init(struct zbar_window_s *w, struct zbar_image_s *img)
 {
     window_state_t *win = w->state;
     switch (w->format) {

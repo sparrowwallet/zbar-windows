@@ -21,7 +21,7 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
-#include <config.h>
+#include "config.h"
 #include <zbar.h>
 
 #ifdef DEBUG_DATABAR
@@ -655,7 +655,9 @@ static inline unsigned lookup_sequence(databar_segment_t *seg, int fixed,
         seq[i++] = s;
     }
     dbprintf(2, "}");
-    seq[n] = -1;
+    if (n < 22) {
+        seq[n] = -1;
+    }
     return (fixed < 1);
 }
 
@@ -666,9 +668,9 @@ static inline zbar_symbol_type_t
 match_segment_exp(zbar_decoder_t *dcode, databar_segment_t *seg, int dir)
 {
     databar_decoder_t *db = &dcode->databar;
-    int bestsegs[22] = { 0 }, i = 0, segs[22] = { 0 }, seq[22] = { 0 };
+    int bestsegs[22], i = 0, segs[22], seq[22];
     int ifixed = seg - db->segs, fixed = IDX(seg), maxcnt = 0;
-    int iseg[DATABAR_MAX_SEGMENTS] = { 0 };
+    int iseg[DATABAR_MAX_SEGMENTS];
     unsigned csegs = db->csegs, width = seg->width, maxage = 0x7fff;
 
     bestsegs[0] = segs[0] = seq[1] = -1;

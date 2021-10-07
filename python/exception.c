@@ -108,8 +108,10 @@ static PyGetSetDef exc_getset[] = {
 
 PyTypeObject zbarException_Type = {
     PyVarObject_HEAD_INIT(NULL, 0).tp_name = "zbar.Exception",
-    .tp_basicsize                          = sizeof(zbarException),
+
     .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
+
+    .tp_basicsize                          = sizeof(zbarException),
     .tp_init  = (initproc)exc_init,
     .tp_traverse = (traverseproc)exc_traverse,
     .tp_clear    = (inquiry)exc_clear,

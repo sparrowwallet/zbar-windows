@@ -7,6 +7,7 @@
 #define _qrdec_H (1)
 
 #include <zbar.h>
+#include "qrcode.h"
 
 typedef struct qr_code_data_entry qr_code_data_entry;
 typedef struct qr_code_data qr_code_data;

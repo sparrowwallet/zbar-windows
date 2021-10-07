@@ -21,8 +21,8 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#include "config.h"
 #include <argp.h>
-#include <config.h>
 #ifdef HAVE_INTTYPES_H
 #include <inttypes.h>
 #endif

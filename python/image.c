@@ -443,9 +443,11 @@ static PyMethodDef image_methods[] = {
 
 PyTypeObject zbarImage_Type = {
     PyVarObject_HEAD_INIT(NULL, 0).tp_name = "zbar.Image",
+
+    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
+
     .tp_doc                                = image_doc,
     .tp_basicsize                          = sizeof(zbarImage),
-    .tp_flags = Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE | Py_TPFLAGS_HAVE_GC,
     .tp_new   = (newfunc)image_new,
     .tp_init  = (initproc)image_init,
     .tp_traverse = (traverseproc)image_traverse,
