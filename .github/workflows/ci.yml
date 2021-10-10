@@ -31,7 +31,7 @@ jobs:
                                 libqt5x11extras5-dev qtbase5-dev
     - name: build
       run: |
-        .github/workflows/debuilder.sh
+        bash .github/workflows/debuilder.sh
 
   Ubuntu_Gtk2:
     name: Ubuntu with Gtk2
