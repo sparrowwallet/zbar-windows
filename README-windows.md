@@ -184,6 +184,48 @@ building environment is, you can build ZBar with:
 
     make
 
+Building with cmake on Windows
+----------------------------
+
+1. download and install `VS 2019` from [Microsoft Visual Studio site](https://visualstudio.microsoft.com/downloads/)
+2. install [cmake](https://cmake.org/)
+3. install [git](https://git-scm.com/), then clone `vcpkg` source code and install `libiconv`, `libjpeg`, `libpng` and `zlib` on **C disk**(c:/vcpkg)
+```
+c:
+cd /
+git clone https://github.com/microsoft/vcpkg.git
+cd c:/vcpkg
+bootstrap-vcpkg.bat
+
+vcpkg integrate install
+
+vcpkg install libjpeg-turbo libjpeg-turbo:x64-windows
+vcpkg install libpng libpng:x64-windows
+vcpkg install libiconv libiconv:x64-windows
+vcpkg install zlib zlib:x64-windows
+```
+4. clone zbar source code to `c:/zbar`
+```
+c:
+cd /
+git clone https://github.com/ShadowsocksR-Live/zbar.git
+```
+5. use `cmake` generate the build environment.
+```
+c:
+mkdir c:/zbar/build
+cd c:/zbar/build
+cmake .. -DCMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+6. open `Visual Studio 2019 Developer Command Prompt`, then build zbar with it.
+```
+c:
+cd c:/zbar/build
+devenv zbar.sln /build release
+devenv zbar.sln /build debug
+```
+7. done
+
 
 RUNNING
 =======

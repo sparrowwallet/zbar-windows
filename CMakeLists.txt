@@ -10,15 +10,17 @@ set(CMAKE_C_STANDARD 90)
 set(ZBAR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "zbar root directory" FORCE)
 
 if (MSVC)
-# "-DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+# "-DCMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake"
 find_package(iconv REQUIRED)
+find_package(JPEG REQUIRED)
 find_package(libpng CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)
 else()
-# sudo apt-get install libpng-dev zlib1g-dev -y
+# sudo apt-get install libpng-dev libjpeg-dev zlib1g-dev -y
 find_package(Threads REQUIRED )
 find_package(Iconv REQUIRED)
 find_package(PNG REQUIRED)
+find_package(JPEG REQUIRED)
 find_package(ZLIB REQUIRED)
 endif()
 
@@ -47,6 +49,7 @@ set(ZBAR_SRCS
     zbar/error.c
     zbar/image.c
     zbar/img_scanner.c
+    zbar/jpeg.c
     zbar/misc.c
     zbar/processor.c
     zbar/refcnt.c
@@ -87,7 +90,8 @@ add_library( zbar SHARED
 
 SET(CMAKE_LINK_DEF_FILE_FLAG "/DEF:win32/zbar.def")
 
-target_link_libraries( zbar PRIVATE Iconv::Charset Iconv::Iconv winmm )
+target_link_libraries( zbar PRIVATE ${JPEG_LIBRARIES} Iconv::Charset Iconv::Iconv winmm )
+target_include_directories( zbar PRIVATE ${JPEG_INCLUDE_DIR} )
 
 add_executable( zbarcam zbarcam/zbarcam.c )
 target_link_libraries( zbarcam zbar )
@@ -120,6 +124,7 @@ add_library( zbar SHARED
     ${ZBAR_WINDOW_SRCS}
     ${ZBAR_SRCS}
 )
+target_link_libraries( zbar jpeg )
 
 add_definitions("-DLOCALEDIR=\"/tmp/\"")
 add_executable( zbarcam zbarcam/zbarcam.c )

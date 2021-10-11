@@ -56,7 +56,7 @@
 #undef HAVE_JPEGLIB_H
 
 /* Define to 1 if you have the `jpeg' library (-ljpeg). */
-#undef HAVE_LIBJPEG
+#define HAVE_LIBJPEG 1
 
 /* Define to 1 if you have the `pthread' library (-lpthread). */
 #undef HAVE_LIBPTHREAD
