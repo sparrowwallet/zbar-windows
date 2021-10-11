@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: install packages
       run: |
-        sudo apt-get install libpng-dev zlib1g-dev -y
+        sudo apt-get install libpng-dev libjpeg-dev zlib1g-dev -y
     
     - uses: actions/checkout@v2
 
