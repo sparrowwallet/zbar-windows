@@ -24,12 +24,12 @@
 
 #include "config.h"
 
-#include <amvideo.h> // include after ddraw.h has been included from any dshow header
 #include <assert.h>
 #include <control.h>
 #include <objbase.h>
 #include <qedit.h>
 #include <strmif.h>
+#include <amvideo.h> // include after ddraw.h has been included from any dshow header
 #include "misc.h"
 #include "thread.h"
 #include "video.h"

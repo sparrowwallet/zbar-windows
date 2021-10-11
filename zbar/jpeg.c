@@ -21,11 +21,12 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#include <stddef.h>
+#include <stdio.h>
 #include <assert.h> /* FIXME tmp debug */
 #include <jerror.h>
 #include <jpeglib.h>
 #include <setjmp.h>
-#include <stdio.h>
 
 #undef HAVE_STDLIB_H
 #include <zbar.h>

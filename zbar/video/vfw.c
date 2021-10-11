@@ -21,6 +21,7 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#include <windows.h>
 #include <vfw.h>
 #include "thread.h"
 #include "video.h"
