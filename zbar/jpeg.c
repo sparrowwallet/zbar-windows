@@ -21,6 +21,10 @@
  *  http://sourceforge.net/projects/zbar
  *------------------------------------------------------------------------*/
 
+#include "config.h"
+
+#ifdef HAVE_LIBJPEG
+
 #include <stddef.h>
 #include <stdio.h>
 #include <assert.h> /* FIXME tmp debug */
@@ -243,3 +247,5 @@ error:
         /* cleanup only if we allocated locally */
         _zbar_jpeg_decomp_destroy(cinfo);
 }
+
+#endif
