@@ -66,7 +66,7 @@
       <DisableSpecificWarnings>4996;4819;4018;4554;4244;4146;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;ZBAR_VERSION_PATCH=0;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;ENABLE_QRCODE;ZBAR_VERSION_MAJOR=0;ZBAR_VERSION_MINOR=23;HAVE_LIBPTHREAD=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)..\zbar\;../config-internal;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -207,12 +207,7 @@
     <ClCompile Include="..\zbar\decoder\pdf417.c" />
     <ClCompile Include="..\zbar\decoder\qr_finder.c" />
     <ClCompile Include="..\zbar\decoder\sq_finder.c" />
-    <ClCompile Include="..\zbar\jpeg.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\zbar\jpeg.c" />
     <ClCompile Include="..\zbar\misc.c" />
     <ClCompile Include="..\zbar\processor\win.c">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)/win1.obj</ObjectFileName>
