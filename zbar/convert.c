@@ -996,6 +996,9 @@ static void convert_jpeg(zbar_image_t *dst, const zbar_format_def_t *dstfmt,
      * (currently only grayscale)
      */
     zbar_image_t *tmp;
+    const zbar_format_def_t *tmpfmt;
+    conversion_handler_t *func;
+
     if (!src->src) {
         tmp         = zbar_image_create();
         tmp->format = fourcc('Y', '8', '0', '0');
@@ -1006,7 +1009,7 @@ static void convert_jpeg(zbar_image_t *dst, const zbar_format_def_t *dstfmt,
         _zbar_image_copy_size(dst, tmp);
     }
 
-    const zbar_format_def_t *tmpfmt = _zbar_format_lookup(tmp->format);
+    tmpfmt = _zbar_format_lookup(tmp->format);
     assert(tmpfmt);
 
     /* convert to intermediate format */
@@ -1015,7 +1018,7 @@ static void convert_jpeg(zbar_image_t *dst, const zbar_format_def_t *dstfmt,
     /* now convert to dst */
     _zbar_image_copy_size(dst, tmp);
 
-    conversion_handler_t *func = conversions[tmpfmt->group][dstfmt->group].func;
+    func = conversions[tmpfmt->group][dstfmt->group].func;
 
     func(dst, dstfmt, tmp, tmpfmt);
 
