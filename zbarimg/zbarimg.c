@@ -190,7 +190,7 @@ static int scan_image(const char *filename)
         // FIXME color!! ...preserve most color w/422P
         // (but only if it's a color image)
         size_t bloblen      = width * height;
-        unsigned char *blob = malloc(bloblen);
+        unsigned char *blob = (unsigned char *)malloc(bloblen);
         zbar_image_set_data(zimage, blob, bloblen, zbar_image_free_data);
 
         if (!MagickGetImagePixels(images, 0, 0, width, height, "I", CharPixel,
