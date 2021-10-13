@@ -30,8 +30,9 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
 
 #ifndef __cplusplus
 
-#undef _Bool
+#ifndef _Bool
 #define _Bool unsigned char 
+#endif
 
 #define bool	_Bool
 #define true	1
