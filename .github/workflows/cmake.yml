@@ -38,12 +38,12 @@ jobs:
         pushd ${{github.workspace}}/v
         git clone https://github.com/microsoft/vcpkg.git
         cd vcpkg
-        bootstrap-vcpkg.bat
-        vcpkg integrate install
-        vcpkg install libjpeg-turbo libjpeg-turbo:x64-windows
-        vcpkg install libpng libpng:x64-windows
-        vcpkg install libiconv libiconv:x64-windows
-        vcpkg install zlib zlib:x64-windows
+        ./bootstrap-vcpkg.bat
+        ./vcpkg integrate install
+        ./vcpkg install libjpeg-turbo libjpeg-turbo:x64-windows
+        ./vcpkg install libpng libpng:x64-windows
+        ./vcpkg install libiconv libiconv:x64-windows
+        ./vcpkg install zlib zlib:x64-windows
         popd
     
     - name: Configure CMake
