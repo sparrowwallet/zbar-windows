@@ -11,7 +11,7 @@ set(ZBAR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "zbar root director
 
 if (MSVC)
 # "-DCMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-find_package(Iconv REQUIRED)
+find_package(iconv REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(libpng CONFIG REQUIRED)
 find_package(ZLIB REQUIRED)
