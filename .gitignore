@@ -18,6 +18,7 @@ x64/
 .deps/
 .dirstamp
 .libs/
+build/
 
 ABOUT-NLS
 aclocal.m4

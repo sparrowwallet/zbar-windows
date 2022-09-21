@@ -6,7 +6,7 @@ from various sources, such as video streams, image files and raw intensity
 sensors. It supports EAN-13/UPC-A, UPC-E, EAN-8, Code 128, Code 93, Code 39,
 Codabar, Interleaved 2 of 5 and QR Code.  Included with the library are basic
 applications for decoding captured bar code images and using a video device
-(eg, webcam) as a bar code scanner.  For application developers, language
+(e.g. webcam) as a bar code scanner.  For application developers, language
 bindings are included for C, C++, Python and Perl as well as GUI widgets for
 Qt, GTK and PyGTK.
 
@@ -136,7 +136,7 @@ You need to install the following packages:
 	autoconf automake autotools-dev libdbus-1-dev \
 	pkg-config binutils-mingw-w64-i686 gcc-mingw-w64 \
 	mingw-w64-i686-dev mingw-w64-common win-iconv-mingw-w64-dev \
-	xmlto
+	xmlto autopoint
 
 Then, build Zbar with:
 
@@ -169,7 +169,7 @@ With Cocolatey installed, ensure that you have minGw and needed deps with:
 Then use pacman to install the needed packages:
 
     pacman -Syu --noconfirm autoconf libtool automake make \
-	autoconf-archive pkg-config
+	autoconf-archive pkg-config autopoint gettext-devel
 
 Once you have everything needed and set the PATH to the places where the
 building environment is, you can build ZBar with:
@@ -241,7 +241,7 @@ To start the webcam reader using the default camera, type:
 
     zbarcam
 
-To decode an image file, type eg:
+To decode an image file, type e.g.:
 
     zbarimg -d examples\barcode.png
 
