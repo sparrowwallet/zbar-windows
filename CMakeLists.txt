@@ -9,6 +9,9 @@ set(CMAKE_C_STANDARD 90)
 
 set(ZBAR_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR} CACHE INTERNAL "zbar root directory" FORCE)
 
+set(JAVA_INCLUDE_PATH "C:/Users/craig/.sdkman/candidates/java/16.0.1.hs-adpt/include")
+set(JAVA_INCLUDE_PATH2 "C:/Users/craig/.sdkman/candidates/java/16.0.1.hs-adpt/include/win32")
+
 if (MSVC)
 # "-DCMAKE_TOOLCHAIN_FILE=c:/vcpkg/scripts/buildsystems/vcpkg.cmake"
 find_package(iconv REQUIRED)
@@ -35,6 +38,7 @@ include_directories(${ZBAR_ROOT_DIR}/zbar/processor)
 include_directories(${ZBAR_ROOT_DIR}/zbar/video)
 include_directories(${ZBAR_ROOT_DIR}/zbar/window)
 include_directories(${ZBAR_ROOT_DIR}/config-internal)
+include_directories(${ZBAR_ROOT_DIR}/java)
 if (MSVC)
 include_directories(${ZBAR_ROOT_DIR}/win32)
 endif()
@@ -77,6 +81,10 @@ set(ZBAR_WINDOW_SRCS
     zbar/window/win.c
 )
 
+set(ZBAR_JNI_SRCS
+    java/zbarjni.c
+)
+
 add_library( zbar SHARED
     zbar/libzbar.rc
     win32/zbar.def
@@ -85,13 +93,14 @@ add_library( zbar SHARED
     ${ZBAR_PROCESSOR_SRCS}
     ${ZBAR_VIDEO_SRCS}
     ${ZBAR_WINDOW_SRCS}
+    ${ZBAR_JNI_SRCS}
     ${ZBAR_SRCS}
 )
 
 SET(CMAKE_LINK_DEF_FILE_FLAG "/DEF:win32/zbar.def")
 
 target_link_libraries( zbar PRIVATE ${JPEG_LIBRARIES} Iconv::Charset Iconv::Iconv winmm )
-target_include_directories( zbar PRIVATE ${JPEG_INCLUDE_DIR} )
+target_include_directories( zbar PRIVATE ${JPEG_INCLUDE_DIR} ${JAVA_INCLUDE_PATH} ${JAVA_INCLUDE_PATH2} )
 
 add_executable( zbarcam zbarcam/zbarcam.c )
 target_link_libraries( zbarcam zbar )
@@ -116,12 +125,17 @@ set(ZBAR_WINDOW_SRCS
     zbar/window/null.c
 )
 
+set(ZBAR_JNI_SRCS
+    java/zbarjni.c
+)
+
 add_library( zbar SHARED
     ${ZBAR_DECODER_SRCS}
     ${ZBAR_QRCODE_SRCS}
     ${ZBAR_PROCESSOR_SRCS}
     ${ZBAR_VIDEO_SRCS}
     ${ZBAR_WINDOW_SRCS}
+    ${ZBAR_JNI_SRCS}
     ${ZBAR_SRCS}
 )
 target_link_libraries( zbar jpeg )
